@@ -1,0 +1,41 @@
+object DM: TDM
+  OldCreateOrder = False
+  Height = 285
+  Width = 424
+  object FDConnection1: TFDConnection
+    Params.Strings = (
+      'SERVER=NC02-PROF\SQLEXPRESS'
+      'OSAuthent=Yes'
+      'ApplicationName=Enterprise/Architect/Ultimate'
+      'Workstation=NC02-PROF'
+      'MARS=yes'
+      'DATABASE=CONSULTORIO'
+      'DriverID=MSSQL')
+    Connected = True
+    LoginPrompt = False
+    Left = 72
+    Top = 24
+  end
+  object FDGUIxWaitCursor1: TFDGUIxWaitCursor
+    Provider = 'Forms'
+    Left = 72
+    Top = 104
+  end
+  object FDConnectionWeb: TFDConnection
+    Params.Strings = (
+      'Database=consultorio'
+      'User_Name=root'
+      'Server=127.0.0.1'
+      'DriverID=MySQL')
+    LoginPrompt = False
+    Left = 296
+    Top = 24
+  end
+  object FDPhysMySQLDriverLink1: TFDPhysMySQLDriverLink
+    VendorLib = 
+      'C:\Program Files\EasyPHP-Devserver-16.1\eds-binaries\dbserver\my' +
+      'sql5710x160202085350\lib\libmysql.dll'
+    Left = 296
+    Top = 96
+  end
+end

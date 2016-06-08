@@ -1,0 +1,24 @@
+object DM: TDM
+  OldCreateOrder = False
+  Height = 150
+  Width = 215
+  object FDConnection1: TFDConnection
+    Params.Strings = (
+      'SERVER=NC02-PROF\SQLEXPRESS'
+      'OSAuthent=Yes'
+      'ApplicationName=Enterprise/Architect/Ultimate'
+      'Workstation=NC02-PROF'
+      'MARS=yes'
+      'DATABASE=CONSULTORIO'
+      'DriverID=MSSQL')
+    Connected = True
+    LoginPrompt = False
+    Left = 72
+    Top = 24
+  end
+  object FDGUIxWaitCursor1: TFDGUIxWaitCursor
+    Provider = 'Forms'
+    Left = 136
+    Top = 80
+  end
+end

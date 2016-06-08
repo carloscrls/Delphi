@@ -1,0 +1,77 @@
+inherited FrmPadraoRel1: TFrmPadraoRel1
+  Caption = 'FrmPadraoRel1'
+  PixelsPerInch = 96
+  TextHeight = 13
+  inherited FDQuery1: TFDQuery
+    SQL.Strings = (
+      
+        'SELECT     Atendimento.*, Paciente.PAC_NOME, Funcionario.FUN_NOM' +
+        'E'
+      'FROM         Funcionario INNER JOIN'
+      
+        '                      Atendimento ON Funcionario.ID = Atendiment' +
+        'o.AT_ID_MEDICO INNER JOIN'
+      
+        '                      Paciente ON Atendimento.AT_ID_PACIENTE = P' +
+        'aciente.ID')
+    Left = 24
+    Top = 64
+  end
+  inherited frxDBDataset1: TfrxDBDataset
+    Left = 96
+    Top = 64
+  end
+  inherited frxReport1: TfrxReport
+    Datasets = <
+      item
+        DataSet = frxDBDataset1
+        DataSetName = 'frxDBDataset1'
+      end>
+    Variables = <>
+    Style = <>
+    object Data: TfrxDataPage
+      Height = 1000.000000000000000000
+      Width = 1000.000000000000000000
+    end
+    object Page1: TfrxReportPage
+      PaperWidth = 210.000000000000000000
+      PaperHeight = 297.000000000000000000
+      PaperSize = 9
+      LeftMargin = 10.000000000000000000
+      RightMargin = 10.000000000000000000
+      TopMargin = 10.000000000000000000
+      BottomMargin = 10.000000000000000000
+    end
+  end
+  object FDQuery2: TFDQuery
+    MasterSource = DataSource1
+    MasterFields = 'ID'
+    SQL.Strings = (
+      'SELECT     Atendimento_Itens.*, Medicamento.MED_NOME'
+      'FROM         Atendimento_Itens INNER JOIN'
+      
+        '                      Medicamento ON Atendimento_Itens.ATI_ID_ME' +
+        'DICAMENTO = Medicamento.ID'
+      ' WHERE Atendimento_itens.ATI_ID_ATENDIMENTO = :ID ')
+    Left = 24
+    Top = 168
+    ParamData = <
+      item
+        Name = 'ID'
+        ParamType = ptInput
+      end>
+  end
+  object frxDBDataset2: TfrxDBDataset
+    UserName = 'frxDBDataset2'
+    CloseDataSource = False
+    DataSet = FDQuery2
+    BCDToCurrency = False
+    Left = 104
+    Top = 168
+  end
+  object DataSource1: TDataSource
+    DataSet = FDQuery1
+    Left = 64
+    Top = 120
+  end
+end
