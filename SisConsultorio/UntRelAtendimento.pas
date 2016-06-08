@@ -37,10 +37,10 @@ uses UntDM;
 procedure TFrmRelAtendimento.SpeedButton1Click(Sender: TObject);
 begin
   inherited;
+  Edit1.Clear;
   FDQuery1.Close;
   FDQuery2.Close;
-  edit1.Clear;
-  close;
+  Close;
 end;
 
 procedure TFrmRelAtendimento.SpeedButton2Click(Sender: TObject);
@@ -49,22 +49,27 @@ begin
   FDQuery1.Close;
   FDQuery2.Close;
 
-  with FDQuery1.sql do
+  with FDQuery1.SQL do
   begin
     Clear;
-    Add( 'SELECT Atendimento.*, Paciente.PAC_NOME, Funcionario.FUN_NOME FROM Funcionario INNER JOIN Atendimento ON Funcionario.ID = Atendimento.AT_ID_MEDICO INNER JOIN Paciente ON Atendimento.AT_ID_PACIENTE = Paciente.ID');
-    if Edit1.text <> '' then
-    try
-      StrToint(edit1.Text);
-      add('WHERE Atendimento.ID = ' + Edit1.Text);
-    Except
-    on ECOnvertError do;
-    end;
-  end;
- FDQuery1.Open();
- FDQuery2.Open();
- frxReport1.ShowReport();
+    Add('SELECT Atendimento.*, Paciente.PAC_NOME, '+
+        'Funcionario.FUN_NOME '+
+        'FROM Atendimento INNER JOIN Paciente '+
+        'ON Atendimento.AT_ID_PACIENTE = Paciente.ID INNER JOIN '+
+        'Funcionario '+
+        'ON Atendimento.AT_ID_MEDICO = Funcionario.ID');
 
+        if Edit1.Text <> '' then
+        try
+          StrToInt(Edit1.Text);
+          Add('WHERE Atendimento.ID = ' + Edit1.Text);
+        except
+          on EConvertError do ;
+        end;
+    end;
+    FDQuery1.Open();
+    FDQuery2.Open();
+    frxReport1.ShowReport();
 end;
 
 end.

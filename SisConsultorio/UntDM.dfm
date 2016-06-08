@@ -4,7 +4,7 @@ object DM: TDM
   Width = 424
   object FDConnection1: TFDConnection
     Params.Strings = (
-      'SERVER=NC02-01\SQLEXPRESS'
+      'SERVER=NC02-06\SQLEXPRESS'
       'OSAuthent=Yes'
       'ApplicationName=Enterprise/Architect/Ultimate'
       'Workstation=NC02-PROF'
@@ -23,11 +23,10 @@ object DM: TDM
   end
   object FDConnectionWeb: TFDConnection
     Params.Strings = (
-      'Database=cons'
+      'Database=consultorio'
       'User_Name=root'
       'Server=127.0.0.1'
       'DriverID=MySQL')
-    Connected = True
     LoginPrompt = False
     Left = 296
     Top = 24
@@ -35,7 +34,7 @@ object DM: TDM
   object FDPhysMySQLDriverLink1: TFDPhysMySQLDriverLink
     VendorLib = 
       'C:\Program Files\EasyPHP-Devserver-16.1\eds-binaries\dbserver\my' +
-      'sql5710x160203080819\lib\libmysql.dll'
+      'sql5710x160202085350\lib\libmysql.dll'
     Left = 296
     Top = 96
   end

@@ -5,7 +5,7 @@ object FrmPadraoRel: TFrmPadraoRel
   BorderStyle = bsSingle
   Caption = 'FrmPadraoRel'
   ClientHeight = 252
-  ClientWidth = 363
+  ClientWidth = 349
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -89,13 +89,13 @@ object FrmPadraoRel: TFrmPadraoRel
   object Panel1: TPanel
     Left = 0
     Top = 0
-    Width = 363
+    Width = 349
     Height = 49
     Align = alTop
     Color = clGray
     ParentBackground = False
     TabOrder = 0
-    ExplicitWidth = 349
+    ExplicitWidth = 415
     object SpeedButton3: TSpeedButton
       Left = 6
       Top = 4
@@ -164,13 +164,15 @@ object FrmPadraoRel: TFrmPadraoRel
   object StatusBar1: TStatusBar
     Left = 0
     Top = 233
-    Width = 363
+    Width = 349
     Height = 19
     Panels = <
       item
         Width = 50
       end>
-    ExplicitWidth = 349
+    ExplicitLeft = 208
+    ExplicitTop = 144
+    ExplicitWidth = 0
   end
   object FDQuery1: TFDQuery
     Connection = DM.FDConnection1

@@ -8,7 +8,7 @@ uses
   FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf,
   FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt, frxClass, frxExportPDF,
   frxDBSet, Data.DB, FireDAC.Comp.DataSet, FireDAC.Comp.Client, Vcl.Buttons,
-  Vcl.ComCtrls, Vcl.ExtCtrls, Vcl.StdCtrls;
+  Vcl.ComCtrls, Vcl.ExtCtrls;
 
 type
   TFrmPadraoRel = class(TForm)

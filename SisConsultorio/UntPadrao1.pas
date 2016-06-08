@@ -55,6 +55,7 @@ type
     N2: TMenuItem;
     Registrosbloqueadosparaouso1: TMenuItem;
     ToolButton1: TToolButton;
+    ToolButton2: TToolButton;
     procedure btn_PrimeiroClick(Sender: TObject);
     procedure btn_AnteriorClick(Sender: TObject);
     procedure btn_ProximoClick(Sender: TObject);
@@ -174,7 +175,8 @@ begin
 
     if confExcl = IDYES then
     begin
-    if FrmAtendimento.FDTabela.TableName = 'Atendimento' then
+    if FrmAtendimento.FDTabela.TableName
+          = 'Atendimento' then
     begin
      FrmAtendimento.FDTblItens.First;
       while not FrmAtendimento.FDTblItens.Eof do

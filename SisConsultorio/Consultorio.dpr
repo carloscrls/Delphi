@@ -12,7 +12,8 @@ uses
   UntPesqData in 'UntPesqData.pas' {pesqData},
   UntPesqString in 'UntPesqString.pas' {pesqString},
   UntPadraoRel in 'UntPadraoRel.pas' {FrmPadraoRel},
-  UntRelAtendimento in 'UntRelAtendimento.pas' {FrmRelAtendimento};
+  UntRelAtendimento in 'UntRelAtendimento.pas' {FrmRelAtendimento},
+  UntRelmedxPac in 'UntRelmedxPac.pas' {FrmRelMedxPac};
 
 {$R *.res}
 
@@ -30,5 +31,6 @@ begin
   Application.CreateForm(TpesqString, pesqString);
   Application.CreateForm(TFrmPadraoRel, FrmPadraoRel);
   Application.CreateForm(TFrmRelAtendimento, FrmRelAtendimento);
+  Application.CreateForm(TFrmRelMedxPac, FrmRelMedxPac);
   Application.Run;
 end.

@@ -28,7 +28,6 @@ type
     ActionMainMenuBar1: TActionMainMenuBar;
     ActionToolBar1: TActionToolBar;
     Action1: TAction;
-    DBComboBox1: TDBComboBox;
     procedure Button1Click(Sender: TObject);
     procedure Timer1Timer(Sender: TObject);
     procedure FormActivate(Sender: TObject);

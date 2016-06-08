@@ -2,8 +2,8 @@ object FrmMenuPrincipal: TFrmMenuPrincipal
   Left = 0
   Top = 0
   Caption = 'Sistema de Consultorio - Menu Principal'
-  ClientHeight = 282
-  ClientWidth = 418
+  ClientHeight = 364
+  ClientWidth = 522
   Color = clGray
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -20,8 +20,8 @@ object FrmMenuPrincipal: TFrmMenuPrincipal
   TextHeight = 13
   object StatusBar1: TStatusBar
     Left = 0
-    Top = 263
-    Width = 418
+    Top = 345
+    Width = 522
     Height = 19
     Panels = <
       item
@@ -46,7 +46,7 @@ object FrmMenuPrincipal: TFrmMenuPrincipal
   object ActionMainMenuBar1: TActionMainMenuBar
     Left = 0
     Top = 0
-    Width = 418
+    Width = 522
     Height = 27
     UseSystemFont = False
     ActionManager = ActionManager1
@@ -62,11 +62,12 @@ object FrmMenuPrincipal: TFrmMenuPrincipal
     Font.Name = 'Segoe UI'
     Font.Style = []
     Spacing = 0
+    ExplicitWidth = 418
   end
   object ActionToolBar1: TActionToolBar
     Left = 0
     Top = 27
-    Width = 418
+    Width = 522
     Height = 42
     ActionManager = ActionManager1
     Caption = 'ActionToolBar1'
@@ -82,18 +83,7 @@ object FrmMenuPrincipal: TFrmMenuPrincipal
     Font.Style = []
     ParentFont = False
     Spacing = 0
-  end
-  object DBComboBox1: TDBComboBox
-    Left = 8
-    Top = 236
-    Width = 145
-    Height = 21
-    Items.Strings = (
-      'A'
-      'B'
-      'C'
-      'D')
-    TabOrder = 3
+    ExplicitWidth = 418
   end
   object QueryLogin: TFDQuery
     Connection = DM.FDConnection1

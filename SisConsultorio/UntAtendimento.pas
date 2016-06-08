@@ -437,7 +437,8 @@ end;
 procedure TFrmAtendimento.ToolButton1Click(Sender: TObject);
 begin
   inherited;
-  FrmRelAtendimento.edit1.text:= FDTabelaID.AsString;
+  FrmRelAtendimento.Edit1.Text:=
+    FDTabelaID.AsString;
   FrmRelAtendimento.ShowModal;
 end;
 
