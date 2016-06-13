@@ -1,0 +1,51 @@
+unit Uniteditar;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Data.Win.ADODB, Vcl.Grids,
+  Vcl.DBGrids, Vcl.StdCtrls, Vcl.ExtCtrls;
+
+type
+  TForm1 = class(TForm)
+    Panel1: TPanel;
+    atribui: TLabel;
+    Panel2: TPanel;
+    DBGrid1: TDBGrid;
+    ADOQuery1: TADOQuery;
+    DataSource1: TDataSource;
+    ADOQuery1PLACA: TStringField;
+    ADOQuery1TRANSPORTADORA: TStringField;
+    ADOQuery1DATAENTRADA: TStringField;
+    ADOQuery1HORAENTRADA: TStringField;
+    ADOQuery1DATASAIDA: TStringField;
+    ADOQuery1HORASAIDA: TStringField;
+    ADOQuery1SIT: TStringField;
+    ADOQuery1NUMNFE: TStringField;
+    ADOQuery1NUMLACRE: TStringField;
+    ADOQuery1PESONFE: TStringField;
+    ADOQuery1PESOBALANCAENTRADA: TFloatField;
+    ADOQuery1PESOBALANCASAIDA: TFloatField;
+    ADOQuery1PESOLIQUIDO: TFloatField;
+    ADOQuery1PRODUTO: TStringField;
+    ADOQuery1NOME: TStringField;
+    ADOQuery1Expr1: TStringField;
+    ADOQuery1CODCARGAOUDESCARGA: TAutoIncField;
+    ADOQuery1NOMElook: TStringField;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form1: TForm1;
+
+implementation
+
+{$R *.dfm}
+
+uses DM;
+
+end.

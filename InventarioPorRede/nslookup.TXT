@@ -1,0 +1,6 @@
+Servidor:  pqsariodc.pqcorp.com
+Address:  10.20.48.21
+
+Nome:    brrc4yg59s1.pqcorp.com
+Address:  10.20.48.108
+

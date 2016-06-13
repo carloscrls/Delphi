@@ -1,0 +1,29 @@
+caminho para codigo fonte
+\\rioclaro\public\it\Projeto PQPORT (Codigo Fonte)\#PQPORTARIAv04012016
+
+Servidor do banco de dados 
+10.20.48.107 (PC CAMERAS) 
+
+Login SQL 
+SA
+
+senha SQL
+c4rl05212121
+
+servidor de backup (Movido todo dia para a pasta no server ) 
+\\rioclaro\workgrp\it\DATABAS_PQPORTARIA
+Backup disparado todo dia as 10hrs da manha sem necessidade de interrupção do funcionamento do Sistema 
+
+Raiz do Backup SQL (LOCAL) 
+\\10.20.48.107\c$\Program Files\Microsoft SQL Server\MSSQL12.SQLEXPRESS\MSSQL\Backup
+
+linguagem DELPHI XE8 ou Seattle 10 
+relatorios criados com Fast Report 5.0 (Free ) 
+
+DLL do sistema 
+ssleay32 & libeay32 
+Devem ser mantidas na raiz do executável (SUgestão é deixar o executavel na rede e utilizar o atalho ) 
+
+
+
+

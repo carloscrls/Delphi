@@ -1,0 +1,122 @@
+unit Unit1;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs,idipwatch,IdBaseComponent,IdComponent, Vcl.StdCtrls,
+  Vcl.ExtCtrls;
+
+type
+  TForm1 = class(TForm)
+
+    Button1: TButton;
+    Edit1: TEdit;
+    IdIPWatch1: TIdIPWatch;
+    Button2: TButton;
+    Panel1: TPanel;
+    Label1: TLabel;
+    Label2: TLabel;
+    Label3: TLabel;
+    Timer1: TTimer;
+    Label4: TLabel;
+    LabelCONTADOR: TLabel;
+    Button3: TButton;
+    procedure Button1Click(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
+    procedure Timer1Timer(Sender: TObject);
+    procedure Button3Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form1: TForm1;
+  X:INTEGER;
+
+  LCLIP:string;
+implementation
+
+{$R *.dfm}
+
+procedure TForm1.Button1Click(Sender: TObject);
+var idipwatch1: TIdIPWatch;
+LCLIP:string;
+VERIFICA:STRING;
+begin
+Edit1.Text:= idipwatch1.LocalIP;
+LCLIP:= idipwatch1.LocalIP;
+begin
+            if ((LCLIP >('10.20.48.1')) and (LCLIP <('10.20.48.99'))
+            or ((LCLIP >('10.20.48.1')) and (LCLIP <('10.20.48.255'))))
+
+            then
+                   begin
+                   VERIFICA:='VERDADEIRO';
+                    if (X<1) then
+                    BEGIN
+                    winexec('C:\SysSlc\SysEXT.bat',SW_HIDE);
+                    Showmessage('*Backup do notebook está em andamento*'+#13+'*Não desligue ou desconecte o cabo de rede do computador*'+#13+'*Você será avisado assim que o processo for concluido '+#13+'***Não abra o Outlook enquanto o backup estiver rodando.***'+#13+'***Ele será iniciado automaticamente assim que o backup for concluído.***');
+                    Close;
+                    END;
+                   end
+                   else
+                   if VERIFICA<>'VERDADEIRO' then
+                   BEGIN
+                    showmessage('Você não está em seu Site'+#13+'Estamos reagendando seu backup'+#13+'Att Equipe de Ti PQ Silicas');
+                    Button2.Click;
+                   END;
+end;
+
+end;
+
+
+procedure TForm1.Button2Click(Sender: TObject);
+begin
+close;
+end;
+
+procedure TForm1.Button3Click(Sender: TObject);
+begin
+X:=1;
+end;
+
+procedure TForm1.FormCreate(Sender: TObject);
+begin
+Edit1.Text:= idipwatch1.LocalIP;
+LCLIP:= idipwatch1.LocalIP;
+X:=600;//600;
+timer1.Enabled:=true;
+end;
+
+procedure TForm1.Timer1Timer(Sender: TObject);
+begin
+
+            if ((LCLIP >('10.20.48.1')) and (LCLIP <('10.20.48.99'))
+            or ((LCLIP >('10.20.48.1')) and (LCLIP <('10.20.48.255'))))
+
+            then
+              begin
+                X:=X-1;
+                LabelCONTADOR.Caption:= ('RESTAM '+INTTOSTR(X)+' SEGUNDOS');
+                if X<1 then
+                BEGIN
+                Timer1.Enabled:=FALSE;
+                Button1.Click;
+
+                END;
+               end
+               else
+                BEGIN
+                 Timer1.Enabled:=FALSE;
+                 showmessage('Você não está em seu Site'+#13+'Estamos reagendando seu backup'+#13+'Att Equipe de Ti PQ Silicas');
+                 Button2.Click;
+                END;
+end;
+
+
+
+end.

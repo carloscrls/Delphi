@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2016/01/11 09:23:10.000.378,=C:\Users\RAD STUDIO\Documents\Embarcadero\Studio\Projects\Unit2.pas</Transaction>
+    <Transaction>2016/01/11 09:23:51.000.106,=C:\Users\RAD STUDIO\Documents\Embarcadero\Studio\Projects\Unit2.pas</Transaction>
+    <Transaction>2016/01/11 09:25:49.000.604,=C:\Users\RAD STUDIO\Documents\Embarcadero\Studio\Projects\Unit2.pas</Transaction>
+    <Transaction>2016/01/11 09:26:01.000.300,=C:\Users\RAD STUDIO\Documents\Embarcadero\Studio\Projects\Unit2.pas</Transaction>
+    <Transaction>2016/01/11 09:26:39.000.547,=C:\Users\RAD STUDIO\Documents\Embarcadero\Studio\Projects\Unit2.pas</Transaction>
+    <Transaction>2016/01/11 10:05:12.000.539,=C:\Users\RAD STUDIO\Documents\Embarcadero\Studio\Projects\Unit2.pas</Transaction>
+    <Transaction>2016/01/11 10:12:17.000.125,=C:\Users\RAD STUDIO\Documents\Embarcadero\Studio\Projects\Unit2.pas</Transaction>
+    <Transaction>2016/01/11 10:12:55.000.497,=C:\Users\RAD STUDIO\Documents\Embarcadero\Studio\Projects\Unit2.pas</Transaction>
+    <Transaction>2016/01/14 08:19:47.000.261,=C:\Users\RAD STUDIO\Documents\Embarcadero\Studio\Projects\Unit2.pas</Transaction>
+    <Transaction>2016/01/14 09:14:27.000.205,C:\Users\RAD STUDIO\Documents\Embarcadero\Studio\Projects\Unit2.pas=C:\Users\RAD STUDIO\Desktop\CLIENT\UnitCliente.pas</Transaction>
+    <Transaction>2016/01/14 09:14:27.000.205,C:\Users\RAD STUDIO\Documents\Embarcadero\Studio\Projects\Unit2.dfm=C:\Users\RAD STUDIO\Desktop\CLIENT\UnitCliente.dfm</Transaction>
+    <Transaction>2016/01/14 09:14:32.000.849,C:\Users\RAD STUDIO\Documents\Embarcadero\Studio\Projects\Project2.dproj=C:\Users\RAD STUDIO\Documents\Embarcadero\Studio\Projects\Client.dproj</Transaction>
+    <Transaction>2016/01/14 09:14:35.000.981,C:\Users\RAD STUDIO\Documents\Embarcadero\Studio\Projects\Client.dproj=C:\Users\RAD STUDIO\Desktop\CLIENT\Client.dproj</Transaction>
+  </Transactions>
+</BorlandProject>

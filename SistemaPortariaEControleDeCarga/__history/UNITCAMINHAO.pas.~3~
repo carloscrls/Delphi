@@ -1,0 +1,46 @@
+unit UNITCAMINHAO;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, frxClass, frxDBSet,
+  System.ImageList, Vcl.ImgList, Vcl.Grids, Vcl.DBGrids, Vcl.ComCtrls,
+  Vcl.ToolWin, Vcl.StdCtrls, Vcl.ExtCtrls;
+
+type
+  TFRMCAMINHAO = class(TForm)
+    Edit1: TEdit;
+    PnlSearch: TPanel;
+    Label1: TLabel;
+    Edit2: TEdit;
+    PnlTool: TPanel;
+    ToolBar1: TToolBar;
+    BTN_Inserir: TToolButton;
+    BTN_Alterar: TToolButton;
+    BTN_Excluir: TToolButton;
+    ToolButton4: TToolButton;
+    BTN_Imprimir: TToolButton;
+    ToolButton6: TToolButton;
+    BTN_Sair: TToolButton;
+    PnlUser: TPanel;
+    DBGrid1: TDBGrid;
+    ImageList1: TImageList;
+    frxReport1: TfrxReport;
+    frxDBDataset1: TfrxDBDataset;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FRMCAMINHAO: TFRMCAMINHAO;
+
+implementation
+
+{$R *.dfm}
+
+uses DM, UNITREGCAMINHAO;
+
+end.

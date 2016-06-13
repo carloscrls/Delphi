@@ -1,0 +1,200 @@
+unit PRINCIPAL;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.ToolWin,
+  Vcl.ComCtrls, Vcl.DBCtrls, Vcl.Menus, System.ImageList, Vcl.ImgList, Data.DB,
+  Data.Win.ADODB, VCLTee.TeCanvas, Vcl.Buttons;
+
+type
+  TFRMPrincipal = class(TForm)
+    PnlBTN: TPanel;
+    TlbrReg: TToolBar;
+    BTN_Purchases: TToolButton;
+    BTN_Products: TToolButton;
+    BTN_Categories: TToolButton;
+    BTN_Contacts: TToolButton;
+    BTN_Providers: TToolButton;
+    PnlReport: TPanel;
+    TlbrReport: TToolBar;
+    PnlHome: TPanel;
+    ImageList1: TImageList;
+    ToolButton2: TToolButton;
+    DBText1: TDBText;
+    Label1: TLabel;
+    Label2: TLabel;
+    DBText2: TDBText;
+    Label3: TLabel;
+    DBText3: TDBText;
+    ToolButton3: TToolButton;
+    Image1: TImage;
+    ToolButton1: TToolButton;
+    ToolButton4: TToolButton;
+    ToolButton5: TToolButton;
+    ToolButton6: TToolButton;
+    ToolButton7: TToolButton;
+    procedure BTCOLABClick(Sender: TObject);
+    procedure FluxoClick(Sender: TObject);
+    procedure BTN_PurchasesClick(Sender: TObject);
+    procedure BTN_ProductsClick(Sender: TObject);
+    procedure BTN_EmployeesClick(Sender: TObject);
+    procedure ToolButton2Click(Sender: TObject);
+    procedure FormActivate(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure BTN_CategoriesClick(Sender: TObject);
+    procedure BTN_ContactsClick(Sender: TObject);
+    procedure ToolButton3Click(Sender: TObject);
+    procedure BTN_ProvidersClick(Sender: TObject);
+    procedure Image1Click(Sender: TObject);
+    procedure ToolButton4Click(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
+    procedure ToolButton5Click(Sender: TObject);
+    procedure ToolButton6Click(Sender: TObject);
+    procedure ToolButton7Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FRMPrincipal: TFRMPrincipal;
+
+implementation
+
+{$R *.dfm}
+
+uses COLAB, UNITFLUXO, UnitRELATFLUXO, DM, UNITCAMINHAO, UNITCARGAOUDESCARGA,
+  unitrelatCargaOuDescarga, sobre, unitcracha, UnitREMODULADAcargadescarga,
+  UnitSplash, UNITEMPRESAS, UNITINSTRUTOR, UNITCONTROLEINTEGRACAO,
+  UNITINTEGRACAO;
+
+procedure TFRMPrincipal.BTCOLABClick(Sender: TObject);
+begin
+frmcolab.ShowModal;
+end;
+
+procedure TFRMPrincipal.BTN_CategoriesClick(Sender: TObject);
+begin
+FRMCAMINHAO.ShowModal;
+end;
+
+procedure TFRMPrincipal.BTN_ContactsClick(Sender: TObject);
+begin
+frmREMODULADAcargadescarga.ShowModal;
+end;
+
+procedure TFRMPrincipal.BTN_EmployeesClick(Sender: TObject);
+begin
+  FRMRELATFLUXO.ADODataSet1.Close;
+  FRMRELATFLUXO.ADODataSet1.CommandText:=('SELECT NOME,SIT,SITDATE,SITTIME,CARGO FROM COLABORADOR ');
+  FRMRELATFLUXO.ADODataSet1.open;
+  FRMRELATFLUXO.DBGrid1.Refresh;
+  FRMRELATFLUXO.ShowModal;
+end;
+
+procedure TFRMPrincipal.BTN_ProductsClick(Sender: TObject);
+begin
+FRMFLUXO.ShowModal;
+end;
+
+procedure TFRMPrincipal.BTN_ProvidersClick(Sender: TObject);
+begin
+showmessage('ESTE MODULO NAO ESTÁ DISPONIVEL PARA ESTE USUÁRIO !!!');
+end;
+
+procedure TFRMPrincipal.BTN_PurchasesClick(Sender: TObject);
+begin
+frmcolab.ShowModal;
+end;
+
+procedure TFRMPrincipal.Button1Click(Sender: TObject);
+begin
+frmREMODULADAcargadescarga.ShowModal;
+end;
+
+procedure TFRMPrincipal.FluxoClick(Sender: TObject);
+begin
+FRMFLUXO.ShowModal;
+end;
+
+procedure TFRMPrincipal.FormActivate(Sender: TObject);
+begin
+DMUNT.ADODSCOLAB.Active:=true;
+DMUNT.ADODSFLUXO.Active:=true;
+DMUNT.ADODSCARGADESCARGA.Active:=true;
+DMUNT.ADODSCAMINHAO.Active:=true;
+DMUNT.ADOConnection1.Connected:=true;
+
+
+dmunt.ADODSUPDCAMINHAO.Active:=true;
+dmunt.ADODSUPDCAMINHAO.Open;
+dmunt.ADODSUPDCAMINHAO.Close;
+dmunt.ADODSUPDCAMINHAO.Open;
+
+dmunt.ADODSUPDpessoa.Active:=true;
+dmunt.ADODSUPDpessoa.Open;
+dmunt.ADODSUPDpessoa.Close;
+dmunt.ADODSUPDpessoa.Open;
+
+dmunt.ADODSUPMOTORISTA.Active:=true;
+dmunt.ADODSUPMOTORISTA.Open;
+dmunt.ADODSUPMOTORISTA.Close;
+dmunt.ADODSUPMOTORISTA.Open;
+end;
+
+procedure TFRMPrincipal.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+DMUNT.ADODSCOLAB.Active:=false;
+DMUNT.ADODSFLUXO.Active:=false;
+WinExec('taskkill /im PQRCport.exe /F',SW_HIDE) ;
+end;
+
+procedure TFRMPrincipal.Image1Click(Sender: TObject);
+begin
+frmsobre.showmodal;
+end;
+
+procedure TFRMPrincipal.ToolButton2Click(Sender: TObject);
+begin
+  FRMRELATFLUXO.ADODataSet1.Close;
+  FRMRELATFLUXO.ADODataSet1.CommandText:=('SELECT NOME,SIT,SITDATE,SITTIME,CARGO FROM COLABORADOR WHERE CARGO<>''MOTORISTA-DE-CAMINHAO''');
+  FRMRELATFLUXO.ADODataSet1.open;
+  FRMRELATFLUXO.DBGrid1.Refresh;
+  FRMRELATFLUXO.ShowModal;
+end;
+
+procedure TFRMPrincipal.ToolButton3Click(Sender: TObject);
+
+var coringa2:String;
+begin
+FRMRELATCARGAOUDESCARGA.ADODataSet1.close;
+coringa2:=(' from CARGAOUDESCARGA,COLABORADOR,CAMINHAO where PLACAFK=PLACA AND CODIGOCOLABFK=CODIGO ORDER BY DATAENTRADA');
+FRMRELATCARGAOUDESCARGA.ADODataSet1.CommandText:=('select nome,TRANSPORTADORA,PLACAFK,TIPO,PRODUTO,DATAENTRADA,HORAENTRADA,DATASAIDA,HORASAIDA,NUMLACRE,NUMNFE,PESOBALANCAENTRADA,PESOBALANCASAIDA,PESOLIQUIDO,PESONFE '+coringa2) ;
+FRMRELATCARGAOUDESCARGA.ADODataSet1.open;
+FRMRELATCARGAOUDESCARGA.ShowModal;
+end;
+
+procedure TFRMPrincipal.ToolButton4Click(Sender: TObject);
+begin
+frmcracha.ShowModal;
+end;
+
+procedure TFRMPrincipal.ToolButton5Click(Sender: TObject);
+begin
+FRMEMPRESAS.ShowModal;
+end;
+
+procedure TFRMPrincipal.ToolButton6Click(Sender: TObject);
+begin
+FRMINSTRUTOR.ShowModal;
+end;
+
+procedure TFRMPrincipal.ToolButton7Click(Sender: TObject);
+begin
+FRMCONTROLEINTEGRACAO.SHOWMODAL;
+end;
+
+end.

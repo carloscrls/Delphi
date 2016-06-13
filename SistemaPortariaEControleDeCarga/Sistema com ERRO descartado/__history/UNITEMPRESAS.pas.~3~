@@ -1,0 +1,72 @@
+unit UNITEMPRESAS;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, System.ImageList, Vcl.ImgList,
+  Vcl.Grids, Vcl.DBGrids, Vcl.ComCtrls, Vcl.ToolWin, Vcl.StdCtrls, Vcl.ExtCtrls;
+
+type
+  TFRMEMPRESAS = class(TForm)
+    Edit1: TEdit;
+    PnlSearch: TPanel;
+    Label1: TLabel;
+    Edit2: TEdit;
+    PnlTool: TPanel;
+    ToolBar1: TToolBar;
+    BTN_Inserir: TToolButton;
+    BTN_Alterar: TToolButton;
+    BTN_Excluir: TToolButton;
+    ToolButton4: TToolButton;
+    BTN_Imprimir: TToolButton;
+    ToolButton6: TToolButton;
+    BTN_Sair: TToolButton;
+    PnlUser: TPanel;
+    DBGrid1: TDBGrid;
+    ImageList1: TImageList;
+    procedure Edit2Change(Sender: TObject);
+    procedure BTN_InserirClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FRMEMPRESAS: TFRMEMPRESAS;
+
+implementation
+
+{$R *.dfm}
+
+uses DM, UNITREGEMPRESAS;
+
+procedure TFRMEMPRESAS.BTN_InserirClick(Sender: TObject);
+begin
+    WITH FRMREGEMPRESA DO
+    BEGIN
+    DBComboBox1.Items.Clear;
+    DBComboBox1.Items.Add('EFETIVO');
+    DBComboBox1.Items.Add('ESTAGIARIO');
+    DBComboBox1.Items.Add('VISITANTE');
+    DBComboBox1.Items.Add('TERCEIRO');
+    DBComboBox1.Items.Add('MOTORISTA-DE-CAMINHAO');
+    END;
+
+ DMUNT.ADODSCOLAB.Insert;
+ FRMREGCOLAB.BTN_Exit.Enabled:=FALSE;
+ FRMREGCOLAB.BTN_Cancel.Enabled:=TRUE;
+ FRMREGCOLAB.BTN_SAVE.Enabled:=TRUE;
+ FRMREGCOLAB.PnlReg.Enabled:=TRUE;
+ FRMregCOLAB.showmodal;
+end;
+
+procedure TFRMEMPRESAS.Edit2Change(Sender: TObject);
+begin
+DMUNT.ADODSCOLAB.close;
+DMUNT.ADODSCOLAB.CommandText:=('select * from EMPRESA where EMPRESA.nome_EMPRESA like '+'''%'+edit2.Text+'%'+''''+'');
+DMUNT.ADODSCOLAB.open;
+end;
+
+end.

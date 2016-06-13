@@ -1,0 +1,205 @@
+unit UNITREGINTEGRACAO;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.DBCtrls, System.ImageList,
+  Vcl.ImgList, Vcl.ComCtrls, Vcl.ToolWin, Vcl.StdCtrls, Vcl.Mask, Vcl.ExtCtrls;
+
+type
+  TFRMREGINTEGRACAO = class(TForm)
+    Label2: TLabel;
+    Label3: TLabel;
+    PnlReg: TPanel;
+    PnlProducts: TPanel;
+    PnlTool: TPanel;
+    ToolBar1: TToolBar;
+    BTN_Save: TToolButton;
+    BTN_Cancel: TToolButton;
+    ToolButton3: TToolButton;
+    BTN_Exit: TToolButton;
+    ImageList1: TImageList;
+    DBLookupComboBox1: TDBLookupComboBox;
+    DBLookupComboBox2: TDBLookupComboBox;
+    DBLookupComboBox3: TDBLookupComboBox;
+    Label1: TLabel;
+    INTEGRADIA: TDBEdit;
+    Label8: TLabel;
+    ASODIA: TDBEdit;
+    Label9: TLabel;
+    VALIDASODIA: TDBEdit;
+    Label10: TLabel;
+    DBMemo1: TDBMemo;
+    Label11: TLabel;
+    DBEdit8: TDBEdit;
+    Label12: TLabel;
+    DBEdit9: TDBEdit;
+    Label13: TLabel;
+    DBEdit10: TDBEdit;
+    Label14: TLabel;
+    DBEdit11: TDBEdit;
+    Label15: TLabel;
+    DBEdit12: TDBEdit;
+    Label16: TLabel;
+    DBEdit13: TDBEdit;
+    Label17: TLabel;
+    nr1dia: TDBEdit;
+    Label18: TLabel;
+    nr2dia: TDBEdit;
+    Label19: TLabel;
+    nr3dia: TDBEdit;
+    Label20: TLabel;
+    nr4dia: TDBEdit;
+    Label21: TLabel;
+    nr5dia: TDBEdit;
+    Label22: TLabel;
+    nr6dia: TDBEdit;
+    Label4: TLabel;
+    Label5: TLabel;
+    Label6: TLabel;
+    Label7: TLabel;
+    Label23: TLabel;
+    Label24: TLabel;
+    Label25: TLabel;
+    Label26: TLabel;
+    Label27: TLabel;
+    nr1MES: TDBEdit;
+    nr2mes: TDBEdit;
+    nr3MES: TDBEdit;
+    nr4MES: TDBEdit;
+    nr5MES: TDBEdit;
+    nr6MES: TDBEdit;
+    VALIDASOMES: TDBEdit;
+    ASOMES: TDBEdit;
+    INTEGRAMES: TDBEdit;
+    VALIDASOANO: TDBEdit;
+    INTEGRAANO: TDBEdit;
+    ASOANO: TDBEdit;
+    nr6ANO: TDBEdit;
+    nr5ANO: TDBEdit;
+    nr4ANO: TDBEdit;
+    nr3ANO: TDBEdit;
+    nr2ANO: TDBEdit;
+    nr1ANO: TDBEdit;
+    Label29: TLabel;
+    Label30: TLabel;
+    Label31: TLabel;
+    Label32: TLabel;
+    Label33: TLabel;
+    Label34: TLabel;
+    Label35: TLabel;
+    Label36: TLabel;
+    Label37: TLabel;
+    procedure DBMemo1KeyPress(Sender: TObject; var Key: Char);
+    procedure BTN_SaveClick(Sender: TObject);
+    procedure BTN_CancelClick(Sender: TObject);
+    procedure BTN_ExitClick(Sender: TObject);
+    procedure FormActivate(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FRMREGINTEGRACAO: TFRMREGINTEGRACAO;
+  VCTO4meses,HOJEDIA,HOJEMES,HOJEANO:tdatetime;
+  INTEGRADIAX,ASODIAX,VALIDASODIAX,NR1DIAX,NR2DIAX,NR3DIAX,NR4DIAX,NR5DIAX,NR6DIAX,
+  INTEGRAMESX,ASOMESX,VALIDASOMESX,NR1MESX,NR2MESX,NR3MESX,NR4MESX,NR5MESX,NR6MESX,
+  INTEGRAANOX,ASOANOX,VALIDASOANOX,NR1ANOX,NR2ANOX,NR3ANOX,NR4ANOX,NR5ANOX,NR6ANOX :INTEGER;
+
+
+implementation
+
+{$R *.dfm}
+
+uses DM;
+
+procedure TFRMREGINTEGRACAO.BTN_CancelClick(Sender: TObject);
+begin
+DMUNT.ADODSCONTROLEDEINTEGRACAO.CANCEL;
+BTN_Exit.Enabled:=TRUE;
+BTN_Cancel.Enabled:=FALSE;
+BTN_SAVE.Enabled:=FALSE;
+PnlReg.Enabled:=FALSE;
+end;
+
+procedure TFRMREGINTEGRACAO.BTN_ExitClick(Sender: TObject);
+begin
+BTN_Exit.Enabled:=FALSE;
+BTN_Cancel.Enabled:=TRUE;
+BTN_SAVE.Enabled:=TRUE;
+PnlReg.Enabled:=TRUE;
+CLOSE;
+end;
+
+procedure TFRMREGINTEGRACAO.BTN_SaveClick(Sender: TObject);
+begin
+if (DBLOOKUPCOMBOBOX1.Text<>'') AND
+   (DBLOOKUPCOMBOBOX2.Text<>'') AND
+   (DBLOOKUPCOMBOBOX3.Text<>'') then
+BEGIN
+DMUNT.ADODSCONTROLEDEINTEGRACAO.Post;
+BTN_Exit.Enabled:=TRUE;
+BTN_Cancel.Enabled:=FALSE;
+BTN_SAVE.Enabled:=FALSE;
+PnlReg.Enabled:=FALSE;
+END
+ELSE
+SHOWMESSAGE('Favor nao deixar nenhum campo em branco');
+end;
+
+procedure TFRMREGINTEGRACAO.DBMemo1KeyPress(Sender: TObject; var Key: Char);
+begin
+Key := AnsiUpperCase(Key)[1];
+end;
+
+procedure TFRMREGINTEGRACAO.FormActivate(Sender: TObject);
+
+begin
+ HOJEdia:= strtoINT (formatdatetime('dd',now));
+ HOJEMES:= strtoINT (formatdatetime('mm',now));
+ HOJEANO:= strtoINT (formatdatetime('yyyy',now));
+ VCTO4meses:= strtoINT (formatdatetime('mm',now+4));//VERIFICAR
+
+  if (nr1dia.Text<>'')AND(nr1MES.Text<>'')AND(nr1ANO.Text<>'') then
+   BEGIN
+   NR1DIAX:=STRTOINT(NR1DIA.Text);
+   NR1MESX:= STRTOINT(NR1MES.Text);
+   NR1ANOX:= STRTOINT(NR1ANO.Text);
+   if ((NR1MESX <= HOJEMES)AND(NR1ANOX <= HOJEANO))OR(NR1ANOX <= HOJEANO)  then
+    BEGIN
+    NR1DIA.Color:=CLRED;
+    NR1MES.Color:=CLRED;
+    NR1ANO.Color:=CLRED;
+    END
+    else if
+     ((NR1MESX >= HOJEMES)AND(NR1ANOX >= HOJEANO))OR(NR1ANOX >= HOJEANO)
+      and (NR1MESX <= vcto4meses) then
+    BEGIN
+    NR1DIA.Color:=clOlive;
+    NR1MES.Color:=clOlive;
+    NR1ANO.Color:=clOlive;
+    END
+    ELSE
+    BEGIN
+    NR1DIA.Color:=$003B3B3B;
+    NR1MES.Color:=$003B3B3B;
+    NR1ANO.Color:=$003B3B3B;
+    END;
+
+   END;
+
+
+end;
+
+
+procedure TFRMREGINTEGRACAO.FormClose(Sender: TObject;
+  var Action: TCloseAction);
+begin
+BTN_Exit.Click;
+end;
+
+end.

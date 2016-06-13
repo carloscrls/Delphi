@@ -1,0 +1,655 @@
+unit UNITCONTROLEDEINTEGRACAO;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, System.ImageList, Vcl.ImgList,
+  Vcl.Grids, Vcl.DBGrids, Vcl.ComCtrls, Vcl.ToolWin, Vcl.StdCtrls, Vcl.ExtCtrls,
+  Vcl.Buttons, frxClass, frxDBSet, Vcl.Mask, Vcl.DBCtrls, Data.Win.ADODB,
+  frxExportCSV, frxExportRTF, frxExportPDF;
+
+type
+  TFRMCONTROLEINTEGRACAO = class(TForm)
+    Edit1: TEdit;
+    PnlSearch: TPanel;
+    PnlTool: TPanel;
+    ToolBar1: TToolBar;
+    BTN_Inserir: TToolButton;
+    BTN_Alterar: TToolButton;
+    ToolButton4: TToolButton;
+    ToolButton6: TToolButton;
+    BTN_Sair: TToolButton;
+    PnlUser: TPanel;
+    DBGrid1: TDBGrid;
+    ImageList1: TImageList;
+    NR1: TEdit;
+    NR2: TEdit;
+    NR3: TEdit;
+    NR4: TEdit;
+    Label2: TLabel;
+    Label3: TLabel;
+    Label4: TLabel;
+    Label5: TLabel;
+    Label6: TLabel;
+    NR5: TEdit;
+    NR6: TEdit;
+    Label7: TLabel;
+    Label8: TLabel;
+    RadioGroup1: TRadioGroup;
+    BitBtn1: TBitBtn;
+    editmeses: TEdit;
+    editdatavcto4: TEdit;
+    RadioGroup2: TRadioGroup;
+    BitBtn2: TBitBtn;
+    editdatavcto42: TEdit;
+    frxDBDataset1: TfrxDBDataset;
+    frxReport1: TfrxReport;
+    ToolButton1: TToolButton;
+    DBEdit1: TDBEdit;
+    Label1: TLabel;
+    DBLookupComboBox1: TDBLookupComboBox;
+    BitBtn3: TBitBtn;
+    RadioGroup3: TRadioGroup;
+    ADOQuery1: TADOQuery;
+    DataSource1: TDataSource;
+    ADOQuery1CODIGO: TAutoIncField;
+    ADOQuery1NOME: TStringField;
+    ADOQuery1CPF: TStringField;
+    ADOQuery1RG: TStringField;
+    ADOQuery1CNH: TStringField;
+    ADOQuery1DATAVALIDCNH: TStringField;
+    ADOQuery1CARGO: TStringField;
+    ADOQuery1SIT: TStringField;
+    ADOQuery1NOMEPRESTADORA: TStringField;
+    ADOQuery1CONTATOINTERNO: TMemoField;
+    ADOQuery1RESPONSAVELPORTARIA: TStringField;
+    ADOQuery1SITDATE: TStringField;
+    ADOQuery1SITTIME: TStringField;
+    ADOQuery1RAMAL: TStringField;
+    ADOQuery1integrado: TStringField;
+    frxPDFExport1: TfrxPDFExport;
+    frxRTFExport1: TfrxRTFExport;
+    frxCSVExport1: TfrxCSVExport;
+    BitBtn4: TBitBtn;
+    BitBtn5: TBitBtn;
+    DBLookupComboBox2: TDBLookupComboBox;
+    DBEdit2: TDBEdit;
+    ADOQueryEmpresas: TADOQuery;
+    DataSourceEmpresas: TDataSource;
+    editdatahoje: TEdit;
+    Label9: TLabel;
+    procedure FormActivate(Sender: TObject);
+    procedure BTN_InserirClick(Sender: TObject);
+    procedure BTN_AlterarClick(Sender: TObject);
+    procedure BitBtn1Click(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
+    procedure BitBtn2Click(Sender: TObject);
+    procedure RadioGroup1Click(Sender: TObject);
+    procedure RadioGroup2Click(Sender: TObject);
+    procedure ToolButton1Click(Sender: TObject);
+    procedure DBEdit1Change(Sender: TObject);
+    procedure BitBtn3Click(Sender: TObject);
+    procedure RadioGroup3Click(Sender: TObject);
+    procedure BTN_SairClick(Sender: TObject);
+    procedure BitBtn4Click(Sender: TObject);
+    procedure BitBtn5Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FRMCONTROLEINTEGRACAO: TFRMCONTROLEINTEGRACAO;
+
+implementation
+
+{$R *.dfm}
+
+uses DM, UNITREGINTEGRACAO;
+
+procedure TFRMCONTROLEINTEGRACAO.BitBtn1Click(Sender: TObject);
+VAR STRLIGA,SQL:STRING;
+meses:integer;
+begin
+DMUNT.ADODSCONTROLEDEINTEGRACAO.Close;
+
+ SQL:='';
+
+ if (NR1.Text='')OR(NR2.Text='')OR(NR3.Text='')OR (NR4.Text='')OR(NR5.Text='')OR(NR6.Text='') then
+ BEGIN
+ strliga:= '';
+ END
+ else
+ begin
+ strliga:=' and ';
+ end;
+
+
+
+ if NR1.Text<>'' then
+ BEGIN
+  SQL:=SQL+(STRLIGA+'( NR_OPC1 = '''+NR1.Text+''' OR NR_OPC2 = '''+NR1.Text+''' OR NR_OPC3 = '''+NR1.Text+''' OR NR_OPC4 = '''+NR1.Text+''' OR NR_OPC5 = '''+NR1.Text+''' OR NR_OPC6 = '''+NR1.Text+''')');
+ STRLIGA:=' AND ';
+ END;
+  if NR2.Text<>'' then
+ BEGIN
+  SQL:=SQL+(STRLIGA+'( NR_OPC1 = '''+NR2.Text+''' OR NR_OPC2 = '''+NR2.Text+''' OR NR_OPC3 = '''+NR2.Text+''' OR NR_OPC4 = '''+NR2.Text+''' OR NR_OPC5 = '''+NR2.Text+''' OR NR_OPC6 = '''+NR2.Text+''')');
+ STRLIGA:=' AND ';
+
+ END;
+  if NR3.Text<>'' then
+ BEGIN
+  SQL:=SQL+(STRLIGA+'( NR_OPC1 = '''+NR3.Text+''' OR NR_OPC2 = '''+NR3.Text+''' OR NR_OPC3 = '''+NR3.Text+''' OR NR_OPC4 = '''+NR3.Text+''' OR NR_OPC5 = '''+NR3.Text+''' OR NR_OPC6 = '''+NR3.Text+''')');
+ STRLIGA:=' AND ';
+
+ END;
+  if NR4.Text<>'' then
+ BEGIN
+  SQL:=SQL+(STRLIGA+'( NR_OPC1 = '''+NR4.Text+''' OR NR_OPC2 = '''+NR4.Text+''' OR NR_OPC3 = '''+NR4.Text+''' OR NR_OPC4 = '''+NR4.Text+''' OR NR_OPC5 = '''+NR4.Text+''' OR NR_OPC6 = '''+NR4.Text+''')');
+ STRLIGA:=' AND ';
+
+ END;
+  if NR5.Text<>'' then
+ BEGIN
+  SQL:=SQL+(STRLIGA+'( NR_OPC1 = '''+NR5.Text+''' OR NR_OPC2 = '''+NR5.Text+''' OR NR_OPC3 = '''+NR5.Text+''' OR NR_OPC4 = '''+NR5.Text+''' OR NR_OPC5 = '''+NR5.Text+''' OR NR_OPC6 = '''+NR5.Text+''')');
+ STRLIGA:=' AND ';
+
+ END;
+  if NR6.Text<>'' then
+ BEGIN
+  SQL:=SQL+(STRLIGA+'( NR_OPC1 = '''+NR6.Text+''' OR NR_OPC2 = '''+NR6.Text+''' OR NR_OPC3 = '''+NR6.Text+''' OR NR_OPC4 = '''+NR6.Text+''' OR NR_OPC5 = '''+NR6.Text+''' OR NR_OPC6 = '''+NR6.Text+''')');
+ STRLIGA:=' AND ';
+ END;
+
+ //filtro no goupbox
+ BEGIN
+
+   if RadioGroup1.ItemIndex=0 then  //PROXIMA DO VENCIMENTO
+   BEGIN
+   DBGrid1.Font.Color:=clolive;
+   meses:= strtoint(editmeses.Text);
+   //editdatavcto4.text:= formatdatetime('dd''.''mm''.''yyyy',now+(meses*30));
+   SQL:=SQL+(STRLIGA+'( NR_OPC1_data > '''+editdatahoje.Text+''' OR NR_OPC2_data > '''+editdatahoje.Text+''' OR NR_OPC3_data > '''+editdatahoje.Text+''' OR NR_OPC4_data > '''+editdatahoje.Text+''' OR NR_OPC5_data > '''+editdatahoje.Text+''' OR NR_OPC6_data > '''+editdatahoje.Text+''')');
+   STRLIGA:=' AND ';
+   SQL:=SQL+(STRLIGA+'( NR_OPC1_data <= '''+editdatavcto4.Text+''' OR NR_OPC2_data <= '''+editdatavcto4.Text+''' OR NR_OPC3_data <= '''+editdatavcto4.Text+''' OR NR_OPC4_data <= '''+editdatavcto4.Text+''' OR NR_OPC5_data <= '''+editdatavcto4.Text+''' OR NR_OPC6_data <= '''+editdatavcto4.Text+''')');
+   STRLIGA:=' AND ';
+
+   END;
+
+   if RadioGroup1.ItemIndex=1 then //prazo
+   BEGIN
+   DBGrid1.Font.Color:=clgreen;
+   SQL:=SQL+(STRLIGA+'( NR_OPC1_data > '''+editdatahoje.Text+''' OR NR_OPC2_data > '''+editdatahoje.Text+''' OR NR_OPC3_data > '''+editdatahoje.Text+''' OR NR_OPC4_data > '''+editdatahoje.Text+''' OR NR_OPC5_data > '''+editdatahoje.Text+''' OR NR_OPC6_data > '''+editdatahoje.Text+''')');
+    STRLIGA:=' AND ';
+   END;
+
+   if RadioGroup1.ItemIndex=2 then  //VENCIDA
+   BEGIN
+   DBGrid1.Font.Color:=clred;
+   SQL:=SQL+(STRLIGA+'((NR_OPC1_data < '''+editdatahoje.Text+''') OR (NR_OPC2_data < '''+editdatahoje.Text+''') OR( NR_OPC3_data < '''+editdatahoje.Text+''') OR( NR_OPC4_data < '''+editdatahoje.Text+''') OR( NR_OPC5_data < '''+editdatahoje.Text+''') OR ( NR_OPC6_data < '''+editdatahoje.Text+'''))');
+   STRLIGA:=' AND ';
+   END;
+
+ END;
+
+
+
+
+
+ if (NR1.Text<>'')OR(NR2.Text<>'')OR(NR3.Text<>'')OR (NR4.Text<>'')OR(NR5.Text<>'')OR(NR6.Text<>'') then
+ BEGIN
+   DMUNT.ADODSCONTROLEDEINTEGRACAO.CommandText:=(' select * from CONTROLEDEINTEGRACAO WHERE ' + SQL);
+   DMUNT.ADODSCONTROLEDEINTEGRACAO.Open;
+   //SHOWMESSAGE(DMUNT.ADODSCONTROLEDEINTEGRACAO.CommandText);
+ END
+ ELSE
+ if (RadioGroup1.ItemIndex<>-1) and (NR1.Text='')and(NR2.Text='')and(NR3.Text='')and (NR4.Text='')and(NR5.Text='')and(NR6.Text='')  then
+ begin
+   DMUNT.ADODSCONTROLEDEINTEGRACAO.CommandText:=(' select * from CONTROLEDEINTEGRACAO WHERE ' + SQL);
+   DMUNT.ADODSCONTROLEDEINTEGRACAO.Open;
+   //SHOWMESSAGE(DMUNT.ADODSCONTROLEDEINTEGRACAO.CommandText);
+ end
+ else
+ BEGIN
+ DMUNT.ADODSCONTROLEDEINTEGRACAO.CommandText:=(' select * from CONTROLEDEINTEGRACAO' );
+ DMUNT.ADODSCONTROLEDEINTEGRACAO.Open;
+ END;
+
+
+
+end;
+
+procedure TFRMCONTROLEINTEGRACAO.BitBtn2Click(Sender: TObject);
+VAR STRLIGA,SQL:STRING;
+meses:integer;
+begin
+if RadioGroup2.ItemIndex=0 then  //PROXIMA DO VENCIMENTO      editdatavcto42
+   BEGIN
+   DBGrid1.Font.Color:=clolive;
+   meses:= strtoint(editmeses.Text);
+   SQL:=SQL+(STRLIGA+'( VALIDADE_ASO_DATA > '''+editdatahoje.Text+''')');
+   STRLIGA:=' AND ';
+   SQL:=SQL+(STRLIGA+'( VALIDADE_ASO_DATA <= '''+editdatavcto42.Text+''')');
+   STRLIGA:=' AND ';
+
+   END;
+
+if RadioGroup2.ItemIndex=1 then //prazo
+   BEGIN
+   DBGrid1.Font.Color:=clgreen;
+   SQL:=SQL+(STRLIGA+'( VALIDADE_ASO_DATA > '''+editdatahoje.Text+''')');
+   STRLIGA:=' AND ';
+   END;
+
+if RadioGroup2.ItemIndex=2 then  //VENCIDA
+   BEGIN
+   DBGrid1.Font.Color:=clred;
+   SQL:=SQL+(STRLIGA+'( VALIDADE_ASO_DATA < '''+editdatahoje.Text+''')');
+   STRLIGA:=' AND ';
+   END;
+   DMUNT.ADODSCONTROLEDEINTEGRACAO.CLOSE;
+   DMUNT.ADODSCONTROLEDEINTEGRACAO.CommandText:=(' select * from CONTROLEDEINTEGRACAO WHERE ' + SQL);
+   DMUNT.ADODSCONTROLEDEINTEGRACAO.Open;
+
+ END;
+
+
+
+
+procedure TFRMCONTROLEINTEGRACAO.BitBtn3Click(Sender: TObject);
+begin
+RadioGroup2.ItemIndex:=-1;
+RadioGroup1.ItemIndex:=-1;
+NR1.Text:='';
+NR2.Text:='';
+NR3.Text:='';
+NR4.Text:='';
+NR5.Text:='';
+NR6.Text:='';
+
+DMUNT.ADODSCONTROLEDEINTEGRACAO.close;
+DMUNT.ADODSCONTROLEDEINTEGRACAO.CommandText:=('select * from CONTROLEDEINTEGRACAO where FK_COLAB_CODCOLAB = '+DBEDIT1.text);
+DMUNT.ADODSCONTROLEDEINTEGRACAO.open;
+end;
+
+procedure TFRMCONTROLEINTEGRACAO.BitBtn4Click(Sender: TObject);
+begin
+RadioGroup2.ItemIndex:=-1;
+RadioGroup1.ItemIndex:=-1;
+NR1.Text:='';
+NR2.Text:='';
+NR3.Text:='';
+NR4.Text:='';
+NR5.Text:='';
+NR6.Text:='';
+
+DMUNT.ADODSCONTROLEDEINTEGRACAO.close;
+ DMUNT.ADODSCONTROLEDEINTEGRACAO.CommandText:=(' select * from CONTROLEDEINTEGRACAO' );
+ DMUNT.ADODSCONTROLEDEINTEGRACAO.Open;
+end;
+
+procedure TFRMCONTROLEINTEGRACAO.BitBtn5Click(Sender: TObject);
+begin
+RadioGroup2.ItemIndex:=-1;
+RadioGroup1.ItemIndex:=-1;
+NR1.Text:='';
+NR2.Text:='';
+NR3.Text:='';
+NR4.Text:='';
+NR5.Text:='';
+NR6.Text:='';
+
+DMUNT.ADODSCONTROLEDEINTEGRACAO.close;
+DMUNT.ADODSCONTROLEDEINTEGRACAO.CommandText:=('select * from CONTROLEDEINTEGRACAO where FK_cod_empresa = '+DBEDIT2.text);
+DMUNT.ADODSCONTROLEDEINTEGRACAO.open;
+end;
+
+procedure TFRMCONTROLEINTEGRACAO.BTN_AlterarClick(Sender: TObject);
+begin
+FRMREGINTEGRACAO.Button1.Enabled:=FALSE;
+FRMREGINTEGRACAO.Button2.Enabled:=FALSE;
+FRMREGINTEGRACAO.Button3.Enabled:=FALSE;
+
+FRMREGINTEGRACAO.listcolab.close;
+FRMREGINTEGRACAO.listcolab.SQL.Clear;
+FRMREGINTEGRACAO.listcolab.SQL.add('select * from colaborador where integrado=''SIM''');
+FRMREGINTEGRACAO.listcolab.open;
+
+FRMREGINTEGRACAO.PnlINTEGRACAO.Caption:='EDITAR INTEGRAÇÃO';
+DMUNT.ADODSCONTROLEDEINTEGRACAO.EDIT;
+FRMREGINTEGRACAO.SHOWMODAL;
+end;
+
+procedure TFRMCONTROLEINTEGRACAO.BTN_InserirClick(Sender: TObject);
+begin
+FRMREGINTEGRACAO.Button1.Enabled:=TRUE;
+FRMREGINTEGRACAO.Button2.Enabled:=TRUE;
+FRMREGINTEGRACAO.Button3.Enabled:=TRUE;
+
+FRMREGINTEGRACAO.listcolab.close;
+FRMREGINTEGRACAO.listcolab.SQL.Clear;
+FRMREGINTEGRACAO.listcolab.SQL.add('select * from colaborador where integrado=''NAO''');
+FRMREGINTEGRACAO.listcolab.open;
+
+FRMREGINTEGRACAO.PnlINTEGRACAO.Caption:='CADASTRAR INTEGRAÇÃO';
+DMUNT.ADODSCONTROLEDEINTEGRACAO.INSERT;
+FRMREGINTEGRACAO.SHOWMODAL;
+end;
+
+procedure TFRMCONTROLEINTEGRACAO.BTN_SairClick(Sender: TObject);
+begin
+close;
+end;
+
+procedure TFRMCONTROLEINTEGRACAO.Button1Click(Sender: TObject);
+begin
+ DMUNT.ADODSCONTROLEDEINTEGRACAO.Close;
+ DMUNT.ADODSCONTROLEDEINTEGRACAO.CommandText:='select * from CONTROLEDEINTEGRACAO where validade_aso_data  ';
+ DMUNT.ADODSCONTROLEDEINTEGRACAO.Active:=true;
+ DMUNT.ADODSCONTROLEDEINTEGRACAO.open;
+end;
+
+procedure TFRMCONTROLEINTEGRACAO.DBEdit1Change(Sender: TObject);
+begin
+RadioGroup2.ItemIndex:=-1;
+RadioGroup1.ItemIndex:=-1;
+NR1.Text:='';
+NR2.Text:='';
+NR3.Text:='';
+NR4.Text:='';
+NR5.Text:='';
+NR6.Text:='';
+DBGrid1.Font.Color:=clBLACK;
+
+
+end;
+
+procedure TFRMCONTROLEINTEGRACAO.FormActivate(Sender: TObject);
+begin
+ADOQuery1.Active:=false;
+ADOQuery1.Active:=true;
+
+ PnlSearch.Height:=65;
+RadioGroup3.ItemIndex:=0;
+editdatahoje.text:= FormatDateTime('dd''.''mm''.''yyyy',now);
+editdatavcto4.text:= FormatDateTime('dd''.''mm''.''yyyy',now+120);
+editdatavcto42.text:= FormatDateTime('dd''.''mm''.''yyyy',now+120);
+
+FRMREGINTEGRACAO.listcolab.close;
+FRMREGINTEGRACAO.listcolab.SQL.Clear;
+FRMREGINTEGRACAO.listcolab.SQL.add('select * from colaborador ');
+FRMREGINTEGRACAO.listcolab.open;
+DBGrid1.Font.Color:=clBLACK;
+
+ DMUNT.ADODSCONTROLEDEINTEGRACAO.Close;
+ DMUNT.ADODSCONTROLEDEINTEGRACAO.CommandText:='select * from CONTROLEDEINTEGRACAO ';
+ DMUNT.ADODSCONTROLEDEINTEGRACAO.Active:=true;
+ DMUNT.ADODSCONTROLEDEINTEGRACAO.open;
+
+ DMUNT.ADODSEMPRESA.Close;
+ DMUNT.ADODSEMPRESA.CommandText:='select * from EMPRESA ';
+ DMUNT.ADODSEMPRESA.Active:=true;
+ DMUNT.ADODSEMPRESA.open;
+
+  DMUNT.ADODSINSTRUTOR.Close;
+ DMUNT.ADODSINSTRUTOR.CommandText:='select * from INSTRUTOR ';
+ DMUNT.ADODSINSTRUTOR.Active:=true;
+ DMUNT.ADODSINSTRUTOR.open;
+end;
+
+procedure TFRMCONTROLEINTEGRACAO.RadioGroup1Click(Sender: TObject);
+begin
+RadioGroup2.ItemIndex:=-1;
+end;
+
+procedure TFRMCONTROLEINTEGRACAO.RadioGroup2Click(Sender: TObject);
+begin
+RadioGroup1.ItemIndex:=-1;
+NR1.Text:='';
+NR2.Text:='';
+NR3.Text:='';
+NR4.Text:='';
+NR5.Text:='';
+NR6.Text:='';
+end;
+
+procedure TFRMCONTROLEINTEGRACAO.RadioGroup3Click(Sender: TObject);
+begin
+{if RadioGroup3.ItemIndex=0 then  //NOME
+ BEGIN
+ PnlSearch.Height:=65;
+ BitBtn3.Click;
+ //NOME
+ DBLookupComboBox1.Enabled:=TRUE;
+ BitBtn3.Enabled:=TRUE;
+ Label1.Enabled:=TRUE;
+ //NR
+ NR1.Enabled:=FALSE;
+ NR2.Enabled:=FALSE;
+ NR3.Enabled:=FALSE;
+ NR4.Enabled:=FALSE;
+ NR5.Enabled:=FALSE;
+ NR6.Enabled:=FALSE;
+ Label3.Enabled:=FALSE;
+ Label4.Enabled:=FALSE;
+ Label5.Enabled:=FALSE;
+ Label6.Enabled:=FALSE;
+ Label7.Enabled:=FALSE;
+ Label8.Enabled:=FALSE;
+ RadioGroup1.Enabled:=FALSE;
+ BitBtn1.Enabled:=FALSE;
+ editdatavcto4.Enabled:=FALSE;
+ //ASO
+ RadioGroup2.Enabled:=FALSE;
+ BitBtn2.Enabled:=FALSE;
+ editdatavcto42.Enabled:=FALSE;
+ END;
+
+if RadioGroup3.ItemIndex=1 then //NR
+ BEGIN
+  PnlSearch.Height:=192;
+ //NOME
+ DBLookupComboBox1.Enabled:=FALSE;
+ BitBtn3.Enabled:=FALSE;
+ Label1.Enabled:=FALSE;
+ //NR
+ NR1.Enabled:=TRUE;
+ NR2.Enabled:=TRUE;
+ NR3.Enabled:=TRUE;
+ NR4.Enabled:=TRUE;
+ NR5.Enabled:=TRUE;
+ NR6.Enabled:=TRUE;
+ Label3.Enabled:=TRUE;
+ Label4.Enabled:=TRUE;
+ Label5.Enabled:=TRUE;
+ Label6.Enabled:=TRUE;
+ Label7.Enabled:=TRUE;
+ Label8.Enabled:=TRUE;
+ RadioGroup1.Enabled:=TRUE;
+ BitBtn1.Enabled:=TRUE;
+ editdatavcto4.Enabled:=TRUE;
+ //ASO
+ RadioGroup2.Enabled:=FALSE;
+ BitBtn2.Enabled:=FALSE;
+ editdatavcto42.Enabled:=FALSE;
+ END;
+
+ if RadioGroup3.ItemIndex=2 then //ASO
+ BEGIN
+  PnlSearch.Height:=192;
+ //NOME
+ DBLookupComboBox1.Enabled:=FALSE;
+ BitBtn3.Enabled:=FALSE;
+ Label1.Enabled:=FALSE;
+ //NR
+ NR1.Enabled:=FALSE;
+ NR2.Enabled:=FALSE;
+ NR3.Enabled:=FALSE;
+ NR4.Enabled:=FALSE;
+ NR5.Enabled:=FALSE;
+ NR6.Enabled:=FALSE;
+ Label3.Enabled:=FALSE;
+ Label4.Enabled:=FALSE;
+ Label5.Enabled:=FALSE;
+ Label6.Enabled:=FALSE;
+ Label7.Enabled:=FALSE;
+ Label8.Enabled:=FALSE;
+ RadioGroup1.Enabled:=FALSE;
+ BitBtn1.Enabled:=FALSE;
+ editdatavcto4.Enabled:=FALSE;
+ //ASO
+ RadioGroup2.Enabled:=TRUE;
+ BitBtn2.Enabled:=TRUE;
+ editdatavcto42.Enabled:=TRUE;
+ END;}
+
+
+     //VISIBLE
+     if RadioGroup3.ItemIndex=0 then  //NOME
+     BEGIN
+     //NOME
+     PnlSearch.Height:=65;
+     DBLookupComboBox1.VISIBLE:=TRUE;
+     BitBtn3.VISIBLE:=TRUE;
+     Label1.VISIBLE:=TRUE;
+     //NR
+     NR1.VISIBLE:=FALSE;
+     NR2.VISIBLE:=FALSE;
+     NR3.VISIBLE:=FALSE;
+     NR4.VISIBLE:=FALSE;
+     NR5.VISIBLE:=FALSE;
+     NR6.VISIBLE:=FALSE;
+     Label3.VISIBLE:=FALSE;
+     Label4.VISIBLE:=FALSE;
+     Label5.VISIBLE:=FALSE;
+     Label6.VISIBLE:=FALSE;
+     Label7.VISIBLE:=FALSE;
+     Label8.VISIBLE:=FALSE;
+     RadioGroup1.VISIBLE:=FALSE;
+     BitBtn1.VISIBLE:=FALSE;
+     editdatavcto4.VISIBLE:=FALSE;
+     //ASO
+     RadioGroup2.VISIBLE:=FALSE;
+     BitBtn2.VISIBLE:=FALSE;
+     editdatavcto42.VISIBLE:=FALSE;
+          //empresa
+     Label9.Visible:=false;
+     DBLookupComboBox2.Visible:=false;
+     BitBtn5.Visible:=false;
+     END;
+
+    if RadioGroup3.ItemIndex=1 then //NR
+     BEGIN
+     PnlSearch.Height:=192;
+     //NOME
+     DBLookupComboBox1.VISIBLE:=FALSE;
+     BitBtn3.VISIBLE:=FALSE;
+     Label1.VISIBLE:=FALSE;
+     //NR
+     NR1.VISIBLE:=TRUE;
+     NR2.VISIBLE:=TRUE;
+     NR3.VISIBLE:=TRUE;
+     NR4.VISIBLE:=TRUE;
+     NR5.VISIBLE:=TRUE;
+     NR6.VISIBLE:=TRUE;
+     Label3.VISIBLE:=TRUE;
+     Label4.VISIBLE:=TRUE;
+     Label5.VISIBLE:=TRUE;
+     Label6.VISIBLE:=TRUE;
+     Label7.VISIBLE:=TRUE;
+     Label8.VISIBLE:=TRUE;
+     RadioGroup1.VISIBLE:=TRUE;
+     BitBtn1.VISIBLE:=TRUE;
+     editdatavcto4.VISIBLE:=TRUE;
+     //ASO
+     RadioGroup2.VISIBLE:=FALSE;
+     BitBtn2.VISIBLE:=FALSE;
+     editdatavcto42.VISIBLE:=FALSE;
+          //empresa
+     Label9.Visible:=false;
+     DBLookupComboBox2.Visible:=false;
+     BitBtn5.Visible:=false;
+     END;
+
+     if RadioGroup3.ItemIndex=2 then //ASO
+     BEGIN
+     //NOME
+     PnlSearch.Height:=192;
+     DBLookupComboBox1.VISIBLE:=FALSE;
+     BitBtn3.VISIBLE:=FALSE;
+     Label1.VISIBLE:=FALSE;
+     //NR
+     NR1.VISIBLE:=FALSE;
+     NR2.VISIBLE:=FALSE;
+     NR3.VISIBLE:=FALSE;
+     NR4.VISIBLE:=FALSE;
+     NR5.VISIBLE:=FALSE;
+     NR6.VISIBLE:=FALSE;
+     Label3.VISIBLE:=FALSE;
+     Label4.VISIBLE:=FALSE;
+     Label5.VISIBLE:=FALSE;
+     Label6.VISIBLE:=FALSE;
+     Label7.VISIBLE:=FALSE;
+     Label8.VISIBLE:=FALSE;
+     RadioGroup1.VISIBLE:=FALSE;
+     BitBtn1.VISIBLE:=FALSE;
+     editdatavcto4.VISIBLE:=FALSE;
+     //ASO
+     RadioGroup2.VISIBLE:=TRUE;
+     BitBtn2.VISIBLE:=TRUE;
+     editdatavcto42.VISIBLE:=TRUE;
+          //empresa
+     Label9.Visible:=false;
+     DBLookupComboBox2.Visible:=false;
+     BitBtn5.Visible:=false;
+     END;
+
+    if RadioGroup3.ItemIndex=3 then //empresa
+     BEGIN
+      ADOQueryEmpresas.Close;
+      ADOQueryEmpresas.open;
+      DBLookupComboBox2.Refresh;
+      PnlSearch.Height:=118;
+     //NOME
+
+     DBLookupComboBox1.VISIBLE:=FALSE;
+     BitBtn3.VISIBLE:=FALSE;
+     Label1.VISIBLE:=FALSE;
+     //NR
+     NR1.VISIBLE:=FALSE;
+     NR2.VISIBLE:=FALSE;
+     NR3.VISIBLE:=FALSE;
+     NR4.VISIBLE:=FALSE;
+     NR5.VISIBLE:=FALSE;
+     NR6.VISIBLE:=FALSE;
+     Label3.VISIBLE:=FALSE;
+     Label4.VISIBLE:=FALSE;
+     Label5.VISIBLE:=FALSE;
+     Label6.VISIBLE:=FALSE;
+     Label7.VISIBLE:=FALSE;
+     Label8.VISIBLE:=FALSE;
+     RadioGroup1.VISIBLE:=FALSE;
+     BitBtn1.VISIBLE:=FALSE;
+     editdatavcto4.VISIBLE:=FALSE;
+     //ASO
+     RadioGroup2.VISIBLE:=false;
+     BitBtn2.VISIBLE:=false;
+     editdatavcto42.VISIBLE:=false;
+     //empresa
+     Label9.Visible:=true;
+     DBLookupComboBox2.Visible:=true;
+     BitBtn5.Visible:=true;
+     END;
+     //VISIBLE
+
+
+end;
+
+procedure TFRMCONTROLEINTEGRACAO.ToolButton1Click(Sender: TObject);
+begin
+frxReport1.ShowReport();
+end;
+
+end.

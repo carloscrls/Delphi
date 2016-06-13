@@ -1,0 +1,13 @@
+Os arquivos 
+
+PQPORTARIA.EXE 
+ssley32.dll
+libeay32.dll
+
+e a pasta
+Projeto PQPORT (Codigo Fonte) 
+
+São extremamente necessários para que o sistema da portaria funcione
+FAVOR NAO DELETAR NADA !!! 
+
+Obrigado. 

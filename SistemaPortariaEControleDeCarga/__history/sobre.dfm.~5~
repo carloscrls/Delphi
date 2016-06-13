@@ -1,0 +1,107 @@
+object FRMSobre: TFRMSobre
+  Left = 0
+  Top = 0
+  Caption = 'FRMSobre'
+  ClientHeight = 172
+  ClientWidth = 629
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Panel1: TPanel
+    Left = 0
+    Top = 0
+    Width = 629
+    Height = 172
+    Align = alClient
+    TabOrder = 0
+    ExplicitHeight = 190
+    object Label1: TLabel
+      Left = 8
+      Top = 16
+      Width = 484
+      Height = 23
+      Caption = 'Software criado por Carlos Magno Silva Tavares Estagi'#225'rio de TI'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -16
+      Font.Name = 'Comic Sans MS'
+      Font.Style = []
+      ParentFont = False
+    end
+    object Label2: TLabel
+      Left = 8
+      Top = 45
+      Width = 109
+      Height = 23
+      Caption = 'Com auxilio de:'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -16
+      Font.Name = 'Comic Sans MS'
+      Font.Style = []
+      ParentFont = False
+    end
+    object Label3: TLabel
+      Left = 8
+      Top = 73
+      Width = 485
+      Height = 23
+      Caption = 
+        'Elisangela HSE: Levantamento de requisitos para o desinvolviment' +
+        'o'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -16
+      Font.Name = 'Comic Sans MS'
+      Font.Style = []
+      ParentFont = False
+    end
+    object Label4: TLabel
+      Left = 8
+      Top = 96
+      Width = 619
+      Height = 23
+      Caption = 
+        'Tatiane Vieira: Criticas construtivas ao designer do software e ' +
+        'sugest'#227'o de melhorias'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -16
+      Font.Name = 'Comic Sans MS'
+      Font.Style = []
+      ParentFont = False
+    end
+    object Label5: TLabel
+      Left = 8
+      Top = 119
+      Width = 411
+      Height = 23
+      Caption = 'Severino Portaria: Esclarecimentos sobre formas de uso '
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -16
+      Font.Name = 'Comic Sans MS'
+      Font.Style = []
+      ParentFont = False
+    end
+    object Label6: TLabel
+      Left = 8
+      Top = 140
+      Width = 284
+      Height = 23
+      Caption = 'Obrigado e desfrutem deste software. '
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -16
+      Font.Name = 'Comic Sans MS'
+      Font.Style = []
+      ParentFont = False
+    end
+  end
+end

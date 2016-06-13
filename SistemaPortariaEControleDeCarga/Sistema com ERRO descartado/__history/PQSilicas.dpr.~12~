@@ -1,0 +1,33 @@
+program PQSilicas;
+
+uses
+  Vcl.Forms,
+  PRINCIPAL in 'PRINCIPAL.pas' {FRMPrincipal},
+  COLAB in 'COLAB.pas' {frmcolab},
+  DM in 'DM.pas' {DMUNT: TDataModule},
+  REGCOLAB in 'REGCOLAB.pas' {FRMREGCOLAB},
+  UNITFLUXO in 'UNITFLUXO.pas' {FRMFLUXO},
+  UnitRELATFLUXO in 'UnitRELATFLUXO.pas' {FRMRELATFLUXO},
+  Vcl.Themes,
+  Vcl.Styles,
+  UNITCAMINHAO in 'UNITCAMINHAO.pas' {FRMCAMINHAO},
+  UNITREGCAMINHAO in 'UNITREGCAMINHAO.pas' {FRMREGCAMINHAO},
+  UNITCARGAOUDESCARGA in 'UNITCARGAOUDESCARGA.pas' {FRMCARGADESCARGA};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  TStyleManager.TrySetStyle('Glossy');
+  Application.CreateForm(TFRMPrincipal, FRMPrincipal);
+  Application.CreateForm(Tfrmcolab, frmcolab);
+  Application.CreateForm(TDMUNT, DMUNT);
+  Application.CreateForm(TFRMREGCOLAB, FRMREGCOLAB);
+  Application.CreateForm(TFRMFLUXO, FRMFLUXO);
+  Application.CreateForm(TFRMRELATFLUXO, FRMRELATFLUXO);
+  Application.CreateForm(TFRMCAMINHAO, FRMCAMINHAO);
+  Application.CreateForm(TFRMREGCAMINHAO, FRMREGCAMINHAO);
+  Application.CreateForm(TFRMCARGADESCARGA, FRMCARGADESCARGA);
+  Application.Run;
+end.

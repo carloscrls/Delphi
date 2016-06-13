@@ -1,0 +1,102 @@
+unit DM;
+
+interface
+
+uses
+  System.SysUtils, System.Classes, Data.DB, Data.Win.ADODB, Vcl.ExtCtrls;
+
+type
+  TDMUNT = class(TDataModule)
+    ADOConnection1: TADOConnection;
+    ADODSCOLAB: TADODataSet;
+    ADODSFLUXO: TADODataSet;
+    DSCOLAB: TDataSource;
+    DSFLUXO: TDataSource;
+    ADODSCOLABCODIGO: TAutoIncField;
+    ADODSCOLABNOME: TStringField;
+    ADODSCOLABCPF: TStringField;
+    ADODSCOLABRG: TStringField;
+    ADODSCOLABCNH: TStringField;
+    ADODSCOLABDATAVALIDCNH: TStringField;
+    ADODSCOLABSIT: TStringField;
+    ADODSFLUXOCOD_COLAB: TIntegerField;
+    ADODSFLUXODATAFLUXO: TStringField;
+    ADODSFLUXOHORAFLUXO: TStringField;
+    ADODSFLUXOSAIDAouENTRADA: TStringField;
+    ADODSCOLABNCRACHA: TStringField;
+    ADODSCOLABNOMEPRESTADORA: TStringField;
+    ADODSCOLABCONTATOINTERNO: TMemoField;
+    ADODSCOLABRESPONSAVELPORTARIA: TStringField;
+    ADODSCOLABSITDATE: TStringField;
+    ADODSCOLABSITTIME: TStringField;
+    ADODSCOLABRAMAL: TStringField;
+    ADODSCARGADESCARGA: TADODataSet;
+    ADODSCAMINHAO: TADODataSet;
+    DSCARGADESCARGA: TDataSource;
+    DSCAMINHAO: TDataSource;
+    ADODSCARGADESCARGACODCARGAOUDESCARGA: TAutoIncField;
+    ADODSCARGADESCARGAPLACAFK: TStringField;
+    ADODSCARGADESCARGACODIGOCOLABFK: TIntegerField;
+    ADODSCARGADESCARGADATAENTRADA: TStringField;
+    ADODSCARGADESCARGAHORAENTRADA: TStringField;
+    ADODSCARGADESCARGADATASAIDA: TStringField;
+    ADODSCARGADESCARGAHORASAIDA: TStringField;
+    ADODSCARGADESCARGATIPO: TStringField;
+    ADODSCARGADESCARGANUMNFE: TStringField;
+    ADODSCARGADESCARGANUMLACRE: TStringField;
+    ADODSCARGADESCARGAPESONFE: TStringField;
+    ADODSCARGADESCARGAPESOBALANCAENTRADA: TFloatField;
+    ADODSCARGADESCARGAPESOBALANCASAIDA: TFloatField;
+    ADODSCARGADESCARGAPRODUTO: TStringField;
+    ADODSCOLABCARGO: TStringField;
+    ADODSCAMINHAOPLACA: TStringField;
+    ADODSCAMINHAOMODELO: TStringField;
+    ADODSCAMINHAOSIT: TStringField;
+    ADODSCARGADESCARGAPESOLIQUIDO: TFloatField;
+    ADODSCAMINHAOTRANSPORTADORA: TStringField;
+    updpessoa: TDataSource;
+    updmotorista: TDataSource;
+    updcaminhao: TDataSource;
+    ADODSUPDCAMINHAO: TADODataSet;
+    IntegerField2: TIntegerField;
+    ADODSUPMOTORISTA: TADODataSet;
+    IntegerField1: TIntegerField;
+    ADODSUPDpessoa: TADODataSet;
+    ADODSUPDpessoaCOLUMN1: TIntegerField;
+    procedure Timer1Timer(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  DMUNT: TDMUNT;
+
+implementation
+
+{%CLASSGROUP 'Vcl.Controls.TControl'}
+
+uses PRINCIPAL;
+
+{$R *.dfm}
+
+procedure TDMUNT.Timer1Timer(Sender: TObject);
+begin
+ADODataSet1.Active:=true;
+ADODataSet1.Open;
+ADODataSet1.Close;
+ADODataSet1.Open;
+
+ADODataSet2.Active:=true;
+ADODataSet2.Open;
+ADODataSet2.Close;
+ADODataSet2.Open;
+
+ADODataSet3.Active:=true;
+ADODataSet3.Open;
+ADODataSet3.Close;
+ADODataSet3.Open;
+end;
+
+end.

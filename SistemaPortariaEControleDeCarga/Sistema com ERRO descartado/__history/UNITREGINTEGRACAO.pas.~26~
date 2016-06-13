@@ -1,0 +1,400 @@
+unit UNITREGINTEGRACAO;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.DBCtrls, System.ImageList,
+  Vcl.ImgList, Vcl.ComCtrls, Vcl.ToolWin, Vcl.StdCtrls, Vcl.Mask, Vcl.ExtCtrls;
+
+type
+  TFRMREGINTEGRACAO = class(TForm)
+    Label2: TLabel;
+    Label3: TLabel;
+    PnlReg: TPanel;
+    PnlProducts: TPanel;
+    PnlTool: TPanel;
+    ToolBar1: TToolBar;
+    BTN_Save: TToolButton;
+    BTN_Cancel: TToolButton;
+    ToolButton3: TToolButton;
+    BTN_Exit: TToolButton;
+    ImageList1: TImageList;
+    DBLookupComboBox1: TDBLookupComboBox;
+    DBLookupComboBox2: TDBLookupComboBox;
+    DBLookupComboBox3: TDBLookupComboBox;
+    Label1: TLabel;
+    INTEGRADIA: TDBEdit;
+    Label8: TLabel;
+    ASODIA: TDBEdit;
+    Label9: TLabel;
+    VALIDASODIA: TDBEdit;
+    Label10: TLabel;
+    DBMemo1: TDBMemo;
+    Label11: TLabel;
+    DBEdit8: TDBEdit;
+    Label12: TLabel;
+    DBEdit9: TDBEdit;
+    Label13: TLabel;
+    DBEdit10: TDBEdit;
+    Label14: TLabel;
+    DBEdit11: TDBEdit;
+    Label15: TLabel;
+    DBEdit12: TDBEdit;
+    Label16: TLabel;
+    DBEdit13: TDBEdit;
+    Label17: TLabel;
+    nr1dia: TDBEdit;
+    Label18: TLabel;
+    nr2dia: TDBEdit;
+    Label19: TLabel;
+    nr3dia: TDBEdit;
+    Label20: TLabel;
+    nr4dia: TDBEdit;
+    Label21: TLabel;
+    nr5dia: TDBEdit;
+    Label22: TLabel;
+    nr6dia: TDBEdit;
+    Label4: TLabel;
+    Label5: TLabel;
+    Label6: TLabel;
+    Label7: TLabel;
+    Label23: TLabel;
+    Label24: TLabel;
+    Label25: TLabel;
+    Label26: TLabel;
+    Label27: TLabel;
+    nr1MES: TDBEdit;
+    nr2mes: TDBEdit;
+    nr3MES: TDBEdit;
+    nr4MES: TDBEdit;
+    nr5MES: TDBEdit;
+    nr6MES: TDBEdit;
+    VALIDASOMES: TDBEdit;
+    ASOMES: TDBEdit;
+    INTEGRAMES: TDBEdit;
+    VALIDASOANO: TDBEdit;
+    INTEGRAANO: TDBEdit;
+    ASOANO: TDBEdit;
+    nr6ANO: TDBEdit;
+    nr5ANO: TDBEdit;
+    nr4ANO: TDBEdit;
+    nr3ANO: TDBEdit;
+    nr2ANO: TDBEdit;
+    nr1ANO: TDBEdit;
+    Label29: TLabel;
+    Label30: TLabel;
+    Label31: TLabel;
+    Label32: TLabel;
+    Label33: TLabel;
+    Label34: TLabel;
+    Label35: TLabel;
+    Label36: TLabel;
+    Label37: TLabel;
+    procedure DBMemo1KeyPress(Sender: TObject; var Key: Char);
+    procedure BTN_SaveClick(Sender: TObject);
+    procedure BTN_CancelClick(Sender: TObject);
+    procedure BTN_ExitClick(Sender: TObject);
+    procedure FormActivate(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FRMREGINTEGRACAO: TFRMREGINTEGRACAO;
+  VCTO4meses,HOJEDIA,HOJEMES,HOJEANO:tdatetime;
+  INTEGRADIA,ASODIA,VALIDASODIA,NR1DIA,NR2DIA,NR3DIA,NR4DIA,NR5DIA,NR6DIA,
+  INTEGRAMES,ASOMES,VALIDASOMES,NR1MES,NR2MES,NR3MES,NR4MES,NR5MES,NR6MES,
+  INTEGRAANO,ASOANO,VALIDASOANO,NR1ANO,NR2ANO,NR3ANO,NR4ANO,NR5ANO,NRANO :STRING;
+
+
+implementation
+
+{$R *.dfm}
+
+uses DM;
+
+procedure TFRMREGINTEGRACAO.BTN_CancelClick(Sender: TObject);
+begin
+DMUNT.ADODSCONTROLEDEINTEGRACAO.CANCEL;
+BTN_Exit.Enabled:=TRUE;
+BTN_Cancel.Enabled:=FALSE;
+BTN_SAVE.Enabled:=FALSE;
+PnlReg.Enabled:=FALSE;
+end;
+
+procedure TFRMREGINTEGRACAO.BTN_ExitClick(Sender: TObject);
+begin
+BTN_Exit.Enabled:=FALSE;
+BTN_Cancel.Enabled:=TRUE;
+BTN_SAVE.Enabled:=TRUE;
+PnlReg.Enabled:=TRUE;
+CLOSE;
+end;
+
+procedure TFRMREGINTEGRACAO.BTN_SaveClick(Sender: TObject);
+begin
+if (DBLOOKUPCOMBOBOX1.Text<>'') AND
+   (DBLOOKUPCOMBOBOX2.Text<>'') AND
+   (DBLOOKUPCOMBOBOX3.Text<>'') then
+BEGIN
+DMUNT.ADODSCONTROLEDEINTEGRACAO.Post;
+BTN_Exit.Enabled:=TRUE;
+BTN_Cancel.Enabled:=FALSE;
+BTN_SAVE.Enabled:=FALSE;
+PnlReg.Enabled:=FALSE;
+END
+ELSE
+SHOWMESSAGE('Favor nao deixar nenhum campo em branco');
+end;
+
+procedure TFRMREGINTEGRACAO.DBMemo1KeyPress(Sender: TObject; var Key: Char);
+begin
+Key := AnsiUpperCase(Key)[1];
+end;
+
+procedure TFRMREGINTEGRACAO.FormActivate(Sender: TObject);
+
+begin
+ HOJEdia:= strtoINT (formatdatetime('dd',now));
+ HOJEMES:= strtoINT (formatdatetime('mm',now));
+ HOJEANO:= strtoINT (formatdatetime('yyyy',now));
+ VCTO4meses:= strtoINT (formatdatetime('mm',now+4));//VERIFICAR
+
+  if (nr1dia.Text<>'')AND(nr1MES.Text<>'')AND(nr1ANO.Text<>'') then
+   BEGIN
+   NR1DIA:=NR1DIA.Text;
+   NR1MES:= STRTOINT(NR1MES.Text);
+   NR1ANO:= STRTOINT(NR1ANO.Text);
+   if ((NR1MES <= HOJEMES)AND(NR1ANO <= HOJEANO))OR(NR1ANO <= HOJEANO)  then
+    BEGIN
+    NR1DIA.Color:=CLRED;
+    NR1MES.Color:=CLRED;
+    NR1ANO.Color:=CLRED;
+    END
+    else if
+     ((NR1MES >= HOJEMES)AND(NR1ANO >= HOJEANO))OR(NR1ANO >= HOJEANO)
+      and (NR1MES <= vcto4meses) then
+    BEGIN
+    NR1DIA.Color:=clOlive;
+    NR1MES.Color:=clOlive;
+    NR1ANO.Color:=clOlive;
+    END
+    ELSE
+    BEGIN
+    NR1DIA.Color:=$003B3B3B;
+    NR1MES.Color:=$003B3B3B;
+    NR1ANO.Color:=$003B3B3B;
+    clOlive
+    END;
+
+   END;
+if (NR2dia.Text<>'')AND(NR2MES.Text<>'')AND(NR2ANO.Text<>'') then
+   BEGIN
+   NR2DIA:= STRTOINT(NR2DIA.Text);
+   NR2MES:= STRTOINT(NR2MES.Text);
+   NR2ANO:= STRTOINT(NR2ANO.Text);
+   if ((NR2MES <= HOJEMES)AND(NR2ANO <= HOJEANO))OR(NR2ANO <= HOJEANO)  then
+    BEGIN
+    NR2DIA.Color:=CLRED;
+    NR2MES.Color:=CLRED;
+    NR2ANO.Color:=CLRED;
+    END
+    else if
+     ((NR3MES >= HOJEMES)AND(NR3ANO >= HOJEANO))OR(NR3ANO >= HOJEANO)
+      and (NR3MES <= vcto4meses) then
+    BEGIN
+    NR3DIA.Color:=clOlive;
+    NR3MES.Color:=clOlive;
+    NR3ANO.Color:=clOlive;
+    END
+    ELSE
+    BEGIN
+    NR3DIA.Color:=$003B3B3B;
+    NR3MES.Color:=$003B3B3B;
+    NR3ANO.Color:=$003B3B3B;
+    clOlive
+    END;
+
+   END;
+if (NR4dia.Text<>'')AND(NR4MES.Text<>'')AND(NR4ANO.Text<>'') then
+   BEGIN
+   NR4DIA:= STRTOINT(NR4DIA.Text);
+   NR4MES:= STRTOINT(NR4MES.Text);
+   NR4ANO:= STRTOINT(NR4ANO.Text);
+   if ((NR4MES <= HOJEMES)AND(NR4ANO <= HOJEANO))OR(NR4ANO <= HOJEANO)  then
+    BEGIN
+    NR4DIA.Color:=CLRED;
+    NR4MES.Color:=CLRED;
+    NR4ANO.Color:=CLRED;
+    END
+    else if
+     ((NR4MES >= HOJEMES)AND(NR4ANO >= HOJEANO))OR(NR4ANO >= HOJEANO)
+      and (NR4MES <= vcto4meses) then
+    BEGIN
+    NR4DIA.Color:=clOlive;
+    NR4MES.Color:=clOlive;
+    NR4ANO.Color:=clOlive;
+    END
+    ELSE
+    BEGIN
+    NR4DIA.Color:=$003B3B3B;
+    NR4MES.Color:=$003B3B3B;
+    NR4ANO.Color:=$003B3B3B;
+    clOlive
+    END;
+
+   END;
+ {if (NR0dia.Text<>'')AND(NR0MES.Text<>'')AND(NR0ANO.Text<>'') then
+   BEGIN
+   NR0DIA:= STRTOINT(NR0DIA.Text);
+   NR0MES:= STRTOINT(NR0MES.Text);
+   NR0ANO:= STRTOINT(NR0ANO.Text);
+   if ((NR0MES <= HOJEMES)AND(NR0ANO <= HOJEANO))OR(NR0ANO <= HOJEANO)  then
+    BEGIN
+    NR0DIA.Color:=CLRED;
+    NR0MES.Color:=CLRED;
+    NR0ANO.Color:=CLRED;
+    END
+    else if
+     ((NR0MES >= HOJEMES)AND(NR0ANO >= HOJEANO))OR(NR0ANO >= HOJEANO)
+      and (NR0MES <= vcto4meses) then
+    BEGIN
+    NR0DIA.Color:=clOlive;
+    NR0MES.Color:=clOlive;
+    NR0ANO.Color:=clOlive;
+    END
+    ELSE
+    BEGIN
+    NR0DIA.Color:=$003B3B3B;
+    NR0MES.Color:=$003B3B3B;
+    NR0ANO.Color:=$003B3B3B;
+    clOlive
+    END;
+
+   END;
+if (NR0dia.Text<>'')AND(NR0MES.Text<>'')AND(NR0ANO.Text<>'') then
+   BEGIN
+   NR0DIA:= STRTOINT(NR0DIA.Text);
+   NR0MES:= STRTOINT(NR0MES.Text);
+   NR0ANO:= STRTOINT(NR0ANO.Text);
+   if ((NR0MES <= HOJEMES)AND(NR0ANO <= HOJEANO))OR(NR0ANO <= HOJEANO)  then
+    BEGIN
+    NR0DIA.Color:=CLRED;
+    NR0MES.Color:=CLRED;
+    NR0ANO.Color:=CLRED;
+    END
+    else if
+     ((NR0MES >= HOJEMES)AND(NR0ANO >= HOJEANO))OR(NR0ANO >= HOJEANO)
+      and (NR0MES <= vcto4meses) then
+    BEGIN
+    NR0DIA.Color:=clOlive;
+    NR0MES.Color:=clOlive;
+    NR0ANO.Color:=clOlive;
+    END
+    ELSE
+    BEGIN
+    NR0DIA.Color:=$003B3B3B;
+    NR0MES.Color:=$003B3B3B;
+    NR0ANO.Color:=$003B3B3B;
+    clOlive
+    END;
+
+   END;
+if (NR0dia.Text<>'')AND(NR0MES.Text<>'')AND(NR0ANO.Text<>'') then
+   BEGIN
+   NR0DIA:= STRTOINT(NR0DIA.Text);
+   NR0MES:= STRTOINT(NR0MES.Text);
+   NR0ANO:= STRTOINT(NR0ANO.Text);
+   if ((NR0MES <= HOJEMES)AND(NR0ANO <= HOJEANO))OR(NR0ANO <= HOJEANO)  then
+    BEGIN
+    NR0DIA.Color:=CLRED;
+    NR0MES.Color:=CLRED;
+    NR0ANO.Color:=CLRED;
+    END
+    else if
+     ((NR0MES >= HOJEMES)AND(NR0ANO >= HOJEANO))OR(NR0ANO >= HOJEANO)
+      and (NR0MES <= vcto4meses) then
+    BEGIN
+    NR0DIA.Color:=clOlive;
+    NR0MES.Color:=clOlive;
+    NR0ANO.Color:=clOlive;
+    END
+    ELSE
+    BEGIN
+    NR0DIA.Color:=$003B3B3B;
+    NR0MES.Color:=$003B3B3B;
+    NR0ANO.Color:=$003B3B3B;
+    clOlive
+    END;
+
+   END;
+if (NR0dia.Text<>'')AND(NR0MES.Text<>'')AND(NR0ANO.Text<>'') then
+   BEGIN
+   NR0DIA:= STRTOINT(NR0DIA.Text);
+   NR0MES:= STRTOINT(NR0MES.Text);
+   NR0ANO:= STRTOINT(NR0ANO.Text);
+   if ((NR0MES <= HOJEMES)AND(NR0ANO <= HOJEANO))OR(NR0ANO <= HOJEANO)  then
+    BEGIN
+    NR0DIA.Color:=CLRED;
+    NR0MES.Color:=CLRED;
+    NR0ANO.Color:=CLRED;
+    END
+    else if
+     ((NR0MES >= HOJEMES)AND(NR0ANO >= HOJEANO))OR(NR0ANO >= HOJEANO)
+      and (NR0MES <= vcto4meses) then
+    BEGIN
+    NR0DIA.Color:=clOlive;
+    NR0MES.Color:=clOlive;
+    NR0ANO.Color:=clOlive;
+    END
+    ELSE
+    BEGIN
+    NR0DIA.Color:=$003B3B3B;
+    NR0MES.Color:=$003B3B3B;
+    NR0ANO.Color:=$003B3B3B;
+    clOlive
+    END;
+
+   END;
+if (NR0dia.Text<>'')AND(NR0MES.Text<>'')AND(NR0ANO.Text<>'') then
+   BEGIN
+   NR0DIA:= STRTOINT(NR0DIA.Text);
+   NR0MES:= STRTOINT(NR0MES.Text);
+   NR0ANO:= STRTOINT(NR0ANO.Text);
+   if ((NR0MES <= HOJEMES)AND(NR0ANO <= HOJEANO))OR(NR0ANO <= HOJEANO)  then
+    BEGIN
+    NR0DIA.Color:=CLRED;
+    NR0MES.Color:=CLRED;
+    NR0ANO.Color:=CLRED;
+    END
+    else if
+     ((NR0MES >= HOJEMES)AND(NR0ANO >= HOJEANO))OR(NR0ANO >= HOJEANO)
+      and (NR0MES <= vcto4meses) then
+    BEGIN
+    NR0DIA.Color:=clOlive;
+    NR0MES.Color:=clOlive;
+    NR0ANO.Color:=clOlive;
+    END
+    ELSE
+    BEGIN
+    NR0DIA.Color:=$003B3B3B;
+    NR0MES.Color:=$003B3B3B;
+    NR0ANO.Color:=$003B3B3B;
+    clOlive
+    END;
+
+   END; }
+end;
+
+
+procedure TFRMREGINTEGRACAO.FormClose(Sender: TObject;
+  var Action: TCloseAction);
+begin
+BTN_Exit.Click;
+end;
+
+end.

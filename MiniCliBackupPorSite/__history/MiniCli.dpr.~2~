@@ -1,0 +1,17 @@
+program MiniCli;
+
+uses
+  Vcl.Forms,
+  UnitMiniCli in 'UnitMiniCli.pas' {MiniCli},
+  Vcl.Themes,
+  Vcl.Styles;
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  TStyleManager.TrySetStyle('Carbon');
+  Application.CreateForm(TMiniCli, MiniCli);
+  Application.Run;
+end.

@@ -1,0 +1,88 @@
+unit unitcracha;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, frxClass, frxDBSet,
+  System.ImageList, Vcl.ImgList, Vcl.Grids, Vcl.DBGrids, Vcl.ComCtrls,
+  Vcl.ToolWin, Vcl.StdCtrls, Vcl.ExtCtrls, Data.Win.ADODB;
+
+type
+  Tfrmcracha = class(TForm)
+    Edit1: TEdit;
+    PnlSearch: TPanel;
+    Label1: TLabel;
+    Edit2: TEdit;
+    PnlTool: TPanel;
+    ToolBar1: TToolBar;
+    BTN_Inserir: TToolButton;
+    BTN_Alterar: TToolButton;
+    BTN_Excluir: TToolButton;
+    ToolButton4: TToolButton;
+    BTN_Imprimir: TToolButton;
+    ToolButton6: TToolButton;
+    BTN_Sair: TToolButton;
+    PnlUser: TPanel;
+    DBGrid1: TDBGrid;
+    ImageList1: TImageList;
+    frxReport1: TfrxReport;
+    frxDBDataset1: TfrxDBDataset;
+    ADOQuery1: TADOQuery;
+    DataSource1: TDataSource;
+    ADOQuery1nome: TStringField;
+    ADOQuery1NCRACHA: TStringField;
+    ADOQuery1DISPONIBILIDADE: TWideStringField;
+    ADOQuery1CODCOLABCRACHA: TIntegerField;
+    procedure Edit2Change(Sender: TObject);
+    procedure BTN_InserirClick(Sender: TObject);
+    procedure BTN_AlterarClick(Sender: TObject);
+    procedure BTN_ExcluirClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmcracha: Tfrmcracha;
+
+implementation
+
+{$R *.dfm}
+
+uses DM, UnitREGCRACHA;
+
+procedure Tfrmcracha.BTN_AlterarClick(Sender: TObject);
+begin
+DMUNT.adodscracha.edit;
+frmregcracha.ShowModal;
+end;
+
+procedure Tfrmcracha.BTN_ExcluirClick(Sender: TObject);
+var conf: integer;
+begin
+Conf := Application.MessageBox('DESEJA DELETAR ESTE REGISTRO ?','DELETAR CRACHA',MB_YESNO+MB_DEFBUTTON2+MB_ICONWARNING);
+ if conf=IDYES then
+ begin
+ DMUNT.adodscracha.open;
+ DMUNT.adodscracha.delete;
+ end
+ else
+ showmessage(' VOCE NAO DELETOU O CRACHA ! '+#13+'...Para deletar clique em deletar e clique em SIM');
+end;
+
+procedure Tfrmcracha.BTN_InserirClick(Sender: TObject);
+begin
+DMUNT.adodscracha.Insert;
+frmregcracha.ShowModal;
+end;
+
+procedure Tfrmcracha.Edit2Change(Sender: TObject);
+begin
+DMUNT.adodscracha.close;
+DMUNT.adodscracha.CommandText:=('select * from cracha where ncracha  like '+'''%'+edit2.Text+'%'+''''+'');
+DMUNT.adodscracha.open;
+end;
+
+end.

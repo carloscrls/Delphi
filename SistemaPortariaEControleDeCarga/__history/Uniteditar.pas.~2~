@@ -1,0 +1,87 @@
+unit Uniteditar;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Data.Win.ADODB, Vcl.Grids,
+  Vcl.DBGrids, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.Mask, Vcl.DBCtrls;
+
+type
+  Tfrmeditar = class(TForm)
+    Panel1: TPanel;
+    atribui: TLabel;
+    Panel2: TPanel;
+    DBGrid1: TDBGrid;
+    ADOQuery1: TADOQuery;
+    DataSource1: TDataSource;
+    ADOQuery1PLACA: TStringField;
+    ADOQuery1TRANSPORTADORA: TStringField;
+    ADOQuery1DATAENTRADA: TStringField;
+    ADOQuery1HORAENTRADA: TStringField;
+    ADOQuery1DATASAIDA: TStringField;
+    ADOQuery1HORASAIDA: TStringField;
+    ADOQuery1SIT: TStringField;
+    ADOQuery1NUMNFE: TStringField;
+    ADOQuery1NUMLACRE: TStringField;
+    ADOQuery1PESONFE: TStringField;
+    ADOQuery1PESOBALANCAENTRADA: TFloatField;
+    ADOQuery1PESOBALANCASAIDA: TFloatField;
+    ADOQuery1PESOLIQUIDO: TFloatField;
+    ADOQuery1PRODUTO: TStringField;
+    ADOQuery1NOME: TStringField;
+    ADOQuery1Expr1: TStringField;
+    ADOQuery1CODCARGAOUDESCARGA: TAutoIncField;
+    DBEdit1: TDBEdit;
+    UPDATECOLAB: TADOQuery;
+    UPDATECOLABNOME: TStringField;
+    UPDATECOLABSIT: TStringField;
+    DSUCOLAB: TDataSource;
+    UPDATECAMINHAO: TADOQuery;
+    UPDATECAMINHAOPLACA: TStringField;
+    UPDATECAMINHAOSIT: TStringField;
+    DSUCAMINHAO: TDataSource;
+    Button1: TButton;
+    DBEdit2: TDBEdit;
+    procedure Button1Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmeditar: Tfrmeditar;
+
+implementation
+
+{$R *.dfm}
+
+uses DM;
+
+procedure Tfrmeditar.Button1Click(Sender: TObject);
+VAR VERIFICA:STRING;
+var conf: integer;
+begin
+Conf := Application.MessageBox('DESEJA DELETAR ESTE REGISTRO ?','DELETAR CARGA OU DESCARGA',MB_YESNO+MB_DEFBUTTON2+MB_ICONWARNING);
+if conf=IDYES then
+
+     begin
+     VERIFICA:='SAIDA';
+     UPDATECAMINHAO.Close;
+     UPDATECAMINHAO.SQL.Clear;
+     UPDATECAMINHAO.SQL.Add('UPDATE CAMINHAO SET SIT= '''+VERIFICA+''' WHERE PLACA = '''+DBEdit1.TEXT+'''');
+     UPDATECOLAB.Close;
+     UPDATECOLAB.SQL.Clear;
+     UPDATECOLAB.SQL.Add('UPDATE COLABORADOR SET SIT= '''+VERIFICA+''' WHERE NOME = '''+DBEdit1.TEXT+'''');
+     ADOQuery1.Delete;
+     SHOWMESSAGE('REGISTRO DELETADO COM SUCESSO');
+     end
+         ELSE
+         BEGIN
+         showmessage('NENHUMA MODIFICAÇÃO FEITA, CANCELADO COM SUCESSO');
+         CLOSE;
+         END;
+end;
+
+end.

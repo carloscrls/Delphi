@@ -1,0 +1,46 @@
+program PQRCPort;
+
+uses
+  Vcl.Forms,
+  PRINCIPAL in 'PRINCIPAL.pas' {FRMPrincipal},
+  COLAB in 'COLAB.pas' {frmcolab},
+  DM in 'DM.pas' {DMUNT: TDataModule},
+  REGCOLAB in 'REGCOLAB.pas' {FRMREGCOLAB},
+  UNITFLUXO in 'UNITFLUXO.pas' {FRMFLUXO},
+  UnitRELATFLUXO in 'UnitRELATFLUXO.pas' {FRMRELATFLUXO},
+  Vcl.Themes,
+  Vcl.Styles,
+  UNITCAMINHAO in 'UNITCAMINHAO.pas' {FRMCAMINHAO},
+  UNITREGCAMINHAO in 'UNITREGCAMINHAO.pas' {FRMREGCAMINHAO},
+  UNITCARGAOUDESCARGA in 'UNITCARGAOUDESCARGA.pas' {FRMCARGADESCARGA},
+  sobre in 'sobre.pas' {FRMSobre},
+  Uniteditar in 'Uniteditar.pas' {frmeditar},
+  unitcracha in 'unitcracha.pas' {frmcracha},
+  UnitREGCRACHA in 'UnitREGCRACHA.pas' {FRMREGCRACHA},
+  UnitREMODULADAcargadescarga in 'UnitREMODULADAcargadescarga.pas' {frmREMODULADAcargadescarga},
+  UnitSplash in 'UnitSplash.pas' {Form1},
+  unitrelatCargaOuDescarga in 'unitrelatCargaOuDescarga.pas' {FRMRELATCARGAOUDESCARGA};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TForm1, Form1);
+  Application.CreateForm(Tfrmcolab, frmcolab);
+  Application.CreateForm(TDMUNT, DMUNT);
+  Application.CreateForm(TFRMREGCOLAB, FRMREGCOLAB);
+  Application.CreateForm(TFRMFLUXO, FRMFLUXO);
+  Application.CreateForm(TFRMRELATFLUXO, FRMRELATFLUXO);
+  Application.CreateForm(TFRMCAMINHAO, FRMCAMINHAO);
+  Application.CreateForm(TFRMREGCAMINHAO, FRMREGCAMINHAO);
+  Application.CreateForm(TFRMCARGADESCARGA, FRMCARGADESCARGA);
+  Application.CreateForm(TFRMSobre, FRMSobre);
+  Application.CreateForm(Tfrmeditar, frmeditar);
+  Application.CreateForm(Tfrmcracha, frmcracha);
+  Application.CreateForm(TFRMREGCRACHA, FRMREGCRACHA);
+  Application.CreateForm(TfrmREMODULADAcargadescarga, frmREMODULADAcargadescarga);
+  Application.CreateForm(TFRMPrincipal, FRMPrincipal);
+  Application.CreateForm(TFRMRELATCARGAOUDESCARGA, FRMRELATCARGAOUDESCARGA);
+  Application.Run;
+end.

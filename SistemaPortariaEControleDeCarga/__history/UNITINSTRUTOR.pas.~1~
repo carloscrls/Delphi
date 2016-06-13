@@ -1,0 +1,42 @@
+unit UNITINSTRUTOR;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, System.ImageList, Vcl.ImgList,
+  Vcl.Grids, Vcl.DBGrids, Vcl.ComCtrls, Vcl.ToolWin, Vcl.StdCtrls, Vcl.ExtCtrls;
+
+type
+  TFRMINSTRUTOR = class(TForm)
+    Edit1: TEdit;
+    PnlSearch: TPanel;
+    Label1: TLabel;
+    Edit2: TEdit;
+    PnlTool: TPanel;
+    ToolBar1: TToolBar;
+    BTN_Inserir: TToolButton;
+    BTN_Alterar: TToolButton;
+    BTN_Excluir: TToolButton;
+    ToolButton4: TToolButton;
+    ToolButton6: TToolButton;
+    BTN_Sair: TToolButton;
+    PnlUser: TPanel;
+    DBGrid1: TDBGrid;
+    ImageList1: TImageList;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FRMINSTRUTOR: TFRMINSTRUTOR;
+
+implementation
+
+{$R *.dfm}
+
+uses DM;
+
+end.

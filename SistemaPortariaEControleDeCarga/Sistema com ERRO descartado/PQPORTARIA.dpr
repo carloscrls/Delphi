@@ -1,0 +1,54 @@
+program PQPORTARIA;
+
+uses
+  Vcl.Forms,
+  PRINCIPAL in 'PRINCIPAL.pas' {FRMPrincipal},
+  COLAB in 'COLAB.pas' {frmcolab},
+  DM in 'DM.pas' {DMUNT: TDataModule},
+  REGCOLAB in 'REGCOLAB.pas' {FRMREGCOLAB},
+  UNITFLUXO in 'UNITFLUXO.pas' {FRMFLUXO},
+  UnitRELATFLUXO in 'UnitRELATFLUXO.pas' {FRMRELATFLUXO},
+  Vcl.Themes,
+  Vcl.Styles,
+  UNITCAMINHAO in 'UNITCAMINHAO.pas' {FRMCAMINHAO},
+  UNITREGCAMINHAO in 'UNITREGCAMINHAO.pas' {FRMREGCAMINHAO},
+  sobre in 'sobre.pas' {FRMSobre},
+  unitcracha in 'unitcracha.pas' {frmcracha},
+  UnitREGCRACHA in 'UnitREGCRACHA.pas' {FRMREGCRACHA},
+  UnitREMODULADAcargadescarga in 'UnitREMODULADAcargadescarga.pas' {frmREMODULADAcargadescarga},
+  UnitSplash in 'UnitSplash.pas' {Form1},
+  unitrelatCargaOuDescarga in 'unitrelatCargaOuDescarga.pas' {FRMRELATCARGAOUDESCARGA},
+  UNITEMPRESAS in 'UNITEMPRESAS.pas' {FRMEMPRESAS},
+  UNITREGEMPRESAS in 'UNITREGEMPRESAS.pas' {FRMREGEMPRESAS},
+  UNITINSTRUTOR in 'UNITINSTRUTOR.pas' {FRMINSTRUTOR},
+  UNITREGINSTRUTOR in 'UNITREGINSTRUTOR.pas' {FRMREGINSTRUTOR},
+  UNITCONTROLEDEINTEGRACAO in 'UNITCONTROLEDEINTEGRACAO.pas' {FRMCONTROLEINTEGRACAO},
+  UNITREGINTEGRACAO in 'UNITREGINTEGRACAO.pas' {FRMREGINTEGRACAO};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TForm1, Form1);
+  Application.CreateForm(Tfrmcolab, frmcolab);
+  Application.CreateForm(TDMUNT, DMUNT);
+  Application.CreateForm(TFRMREGCOLAB, FRMREGCOLAB);
+  Application.CreateForm(TFRMFLUXO, FRMFLUXO);
+  Application.CreateForm(TFRMRELATFLUXO, FRMRELATFLUXO);
+  Application.CreateForm(TFRMCAMINHAO, FRMCAMINHAO);
+  Application.CreateForm(TFRMREGCAMINHAO, FRMREGCAMINHAO);
+  Application.CreateForm(TFRMSobre, FRMSobre);
+  Application.CreateForm(Tfrmcracha, frmcracha);
+  Application.CreateForm(TFRMREGCRACHA, FRMREGCRACHA);
+  Application.CreateForm(TfrmREMODULADAcargadescarga, frmREMODULADAcargadescarga);
+  Application.CreateForm(TFRMPrincipal, FRMPrincipal);
+  Application.CreateForm(TFRMRELATCARGAOUDESCARGA, FRMRELATCARGAOUDESCARGA);
+  Application.CreateForm(TFRMEMPRESAS, FRMEMPRESAS);
+  Application.CreateForm(TFRMREGEMPRESAS, FRMREGEMPRESAS);
+  Application.CreateForm(TFRMINSTRUTOR, FRMINSTRUTOR);
+  Application.CreateForm(TFRMREGINSTRUTOR, FRMREGINSTRUTOR);
+  Application.CreateForm(TFRMCONTROLEINTEGRACAO, FRMCONTROLEINTEGRACAO);
+  Application.CreateForm(TFRMREGINTEGRACAO, FRMREGINTEGRACAO);
+  Application.Run;
+end.

@@ -1,0 +1,54 @@
+unit UnitRELATFLUXO;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Data.Win.ADODB, Vcl.StdCtrls,
+  System.ImageList, Vcl.ImgList, Vcl.Grids, Vcl.DBGrids, Vcl.ExtCtrls,
+  Vcl.Buttons;
+
+type
+  TFRMRELATFLUXO = class(TForm)
+    Edit1: TEdit;
+    PnlSearch: TPanel;
+    DBGrid1: TDBGrid;
+    PnlTool: TPanel;
+    PnlUser: TPanel;
+    ImageList1: TImageList;
+    Label1: TLabel;
+    DataSource1: TDataSource;
+    Edit3: TEdit;
+    Edit4: TEdit;
+    Label2: TLabel;
+    Label3: TLabel;
+    BitBtn1: TBitBtn;
+    ADODataSet1: TADODataSet;
+    Edit2: TEdit;
+    procedure BitBtn1Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FRMRELATFLUXO: TFRMRELATFLUXO;
+
+implementation
+
+{$R *.dfm}
+
+uses DM;
+
+procedure TFRMRELATFLUXO.BitBtn1Click(Sender: TObject);
+begin
+
+ADODataSet1.Close;
+ADODataSet1.CommandText:=('SELECT fluxo.cod_colab, fluxo.horafluxo, COLABORADOR.NOME, fluxo.SAIDAouENTRADA, fluxo.DATAFLUXO FROM COLABORADOR, FLUXO where FLUXO.COD_COLAB = COLABORADOR.CODIGO and fluxo.SAIDAouENTRADA = '+''''+ (edit3.text) +''''+'  and fluxo.datafluxo = '+''''+ (edit4.text) +''''+'   order by fluxo.COD_COLAB;');
+
+ADODataSet1.open;
+DBGrid1.Refresh;
+end;
+
+end.

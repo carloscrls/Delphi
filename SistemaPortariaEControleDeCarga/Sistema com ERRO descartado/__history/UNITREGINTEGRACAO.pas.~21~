@@ -1,0 +1,314 @@
+unit UNITREGINTEGRACAO;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.DBCtrls, System.ImageList,
+  Vcl.ImgList, Vcl.ComCtrls, Vcl.ToolWin, Vcl.StdCtrls, Vcl.Mask, Vcl.ExtCtrls;
+
+type
+  TFRMREGINTEGRACAO = class(TForm)
+    Label2: TLabel;
+    Label3: TLabel;
+    PnlReg: TPanel;
+    PnlProducts: TPanel;
+    PnlTool: TPanel;
+    ToolBar1: TToolBar;
+    BTN_Save: TToolButton;
+    BTN_Cancel: TToolButton;
+    ToolButton3: TToolButton;
+    BTN_Exit: TToolButton;
+    ImageList1: TImageList;
+    DBLookupComboBox1: TDBLookupComboBox;
+    DBLookupComboBox2: TDBLookupComboBox;
+    DBLookupComboBox3: TDBLookupComboBox;
+    Label1: TLabel;
+    DBEdit1: TDBEdit;
+    Label8: TLabel;
+    DBEdit6: TDBEdit;
+    Label9: TLabel;
+    DBEdit7: TDBEdit;
+    Label10: TLabel;
+    DBMemo1: TDBMemo;
+    Label11: TLabel;
+    DBEdit8: TDBEdit;
+    Label12: TLabel;
+    DBEdit9: TDBEdit;
+    Label13: TLabel;
+    DBEdit10: TDBEdit;
+    Label14: TLabel;
+    DBEdit11: TDBEdit;
+    Label15: TLabel;
+    DBEdit12: TDBEdit;
+    Label16: TLabel;
+    DBEdit13: TDBEdit;
+    Label17: TLabel;
+    DBEdit14: TDBEdit;
+    Label18: TLabel;
+    DBEdit15: TDBEdit;
+    Label19: TLabel;
+    DBEdit16: TDBEdit;
+    Label20: TLabel;
+    DBEdit17: TDBEdit;
+    Label21: TLabel;
+    DBEdit18: TDBEdit;
+    Label22: TLabel;
+    DBEdit19: TDBEdit;
+    Label4: TLabel;
+    Label5: TLabel;
+    Label6: TLabel;
+    Label7: TLabel;
+    Label23: TLabel;
+    Label24: TLabel;
+    Label25: TLabel;
+    Label26: TLabel;
+    Label27: TLabel;
+    Label28: TLabel;
+    procedure DBMemo1KeyPress(Sender: TObject; var Key: Char);
+    procedure BTN_SaveClick(Sender: TObject);
+    procedure BTN_CancelClick(Sender: TObject);
+    procedure BTN_ExitClick(Sender: TObject);
+    procedure FormActivate(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FRMREGINTEGRACAO: TFRMREGINTEGRACAO;
+  VCTO4meses,HOJE,VCTOdb1,VCTOdb6,VCTOdb7,VCTOdb14,VCTOdb15,VCTOdb16,VCTOdb17,VCTOdb18,VCTOdb19:tdatetime;
+
+implementation
+
+{$R *.dfm}
+
+uses DM;
+
+procedure TFRMREGINTEGRACAO.BTN_CancelClick(Sender: TObject);
+begin
+DMUNT.ADODSCONTROLEDEINTEGRACAO.CANCEL;
+BTN_Exit.Enabled:=TRUE;
+BTN_Cancel.Enabled:=FALSE;
+BTN_SAVE.Enabled:=FALSE;
+PnlReg.Enabled:=FALSE;
+end;
+
+procedure TFRMREGINTEGRACAO.BTN_ExitClick(Sender: TObject);
+begin
+BTN_Exit.Enabled:=FALSE;
+BTN_Cancel.Enabled:=TRUE;
+BTN_SAVE.Enabled:=TRUE;
+PnlReg.Enabled:=TRUE;
+CLOSE;
+end;
+
+procedure TFRMREGINTEGRACAO.BTN_SaveClick(Sender: TObject);
+begin
+if (DBLOOKUPCOMBOBOX1.Text<>'') AND
+   (DBLOOKUPCOMBOBOX2.Text<>'') AND
+   (DBLOOKUPCOMBOBOX3.Text<>'') then
+BEGIN
+DMUNT.ADODSCONTROLEDEINTEGRACAO.Post;
+BTN_Exit.Enabled:=TRUE;
+BTN_Cancel.Enabled:=FALSE;
+BTN_SAVE.Enabled:=FALSE;
+PnlReg.Enabled:=FALSE;
+END
+ELSE
+SHOWMESSAGE('Favor nao deixar nenhum campo em branco');
+end;
+
+procedure TFRMREGINTEGRACAO.DBMemo1KeyPress(Sender: TObject; var Key: Char);
+begin
+Key := AnsiUpperCase(Key)[1];
+end;
+
+procedure TFRMREGINTEGRACAO.FormActivate(Sender: TObject);
+
+begin
+ HOJE:= strtodate (formatdatetime('dd/mm/yyyy',now));
+ VCTO4meses:= hoje + 120;
+
+  if DBEdit14.Text<>'  /  /    ' then
+  BEGIN
+   VCTOdb14:= strtodate(dbedit14.Text);
+   if VCTOdb14 <= HOJE then
+    BEGIN
+    DBEdit14.Color:=CLRED;
+    END
+    else if (VCTOdb14 >= HOJE)and (VCTOdb14 <= vcto4meses) then
+    BEGIN
+    DBEdit14.Color:=clOlive;
+    END
+    ELSE
+    BEGIN
+    DBEdit14.Color:= $003B3B3B;
+    END;
+
+  END;
+
+ if DBEdit15.Text<>'  /  /    ' then
+  BEGIN
+   VCTOdb15:= strtodate(dbedit15.Text);
+   if VCTOdb15 <= HOJE then
+    BEGIN
+    DBEdit15.Color:=CLRED;
+    END
+    else if (VCTOdb15 >= HOJE)and (VCTOdb15 <= vcto4meses) then
+    BEGIN
+    DBEdit15.Color:=clOlive;
+    END
+    ELSE
+    BEGIN
+    DBEdit15.Color:= $003B3B3B;
+    END;
+
+  END;
+
+
+ if DBEdit16.Text<>'  /  /    ' then
+  BEGIN
+   VCTOdb16:= strtodate(dbedit16.Text);
+   if VCTOdb16 <= HOJE then
+    BEGIN
+    DBEdit16.Color:=CLRED;
+    END
+    else if (VCTOdb16 >= HOJE)and (VCTOdb16 <= vcto4meses) then
+    BEGIN
+    DBEdit16.Color:=clOlive;
+    END
+    ELSE
+    BEGIN
+    DBEdit16.Color:= $003B3B3B;
+    END;
+
+  END;
+
+
+ if DBEdit17.Text<>'  /  /    ' then
+  BEGIN
+   VCTOdb17:= strtodate(dbedit17.Text);
+   if VCTOdb17 <= HOJE then
+    BEGIN
+    DBEdit17.Color:=CLRED;
+    END
+    else if (VCTOdb17 >= HOJE)and (VCTOdb17 <= vcto4meses) then
+    BEGIN
+    DBEdit17.Color:=clOlive;
+    END
+    ELSE
+    BEGIN
+    DBEdit17.Color:= $003B3B3B;
+    END;
+
+  END;
+
+
+ if DBEdit18.Text<>'  /  /    ' then
+  BEGIN
+   VCTOdb18:= strtodate(dbedit18.Text);
+   if VCTOdb18 <= HOJE then
+    BEGIN
+    DBEdit18.Color:=CLRED;
+    END
+    else if (VCTOdb18 >= HOJE)and (VCTOdb18 <= vcto4meses) then
+    BEGIN
+    DBEdit18.Color:=clOlive;
+    END
+    ELSE
+    BEGIN
+    DBEdit18.Color:= $003B3B3B;
+    END;
+
+  END;
+
+
+ if DBEdit19.Text<>'  /  /    ' then
+  BEGIN
+   VCTOdb19:= strtodate(dbedit19.Text);
+   if VCTOdb19 <= HOJE then
+    BEGIN
+    DBEdit19.Color:=CLRED;
+    END
+    else if (VCTOdb19 >= HOJE)and (VCTOdb19 <= vcto4meses) then
+    BEGIN
+    DBEdit19.Color:=clOlive;
+    END
+    ELSE
+    BEGIN
+    DBEdit19.Color:= $003B3B3B;
+    END;
+
+  END;
+
+
+ if DBEdit1.Text<>'  /  /    ' then
+  BEGIN
+   VCTOdb1:= strtodate(dbedit1.Text);
+   if VCTOdb1 <= HOJE then
+    BEGIN
+    DBEdit1.Color:=CLRED;
+    END
+    else if (VCTOdb1 >= HOJE)and (VCTOdb1 <= vcto4meses) then
+    BEGIN
+    DBEdit1.Color:=clOlive;
+    END
+    ELSE
+    BEGIN
+    DBEdit1.Color:= $003B3B3B;
+    END;
+
+  END;
+
+
+ if DBEdit7.Text<>'  /  /    ' then
+  BEGIN
+   VCTOdb7:= strtodate(dbedit7.Text);
+   if VCTOdb7 <= HOJE then
+    BEGIN
+    DBEdit7.Color:=CLRED;
+    END
+    else if (VCTOdb7 >= HOJE)and (VCTOdb7 <= vcto4meses) then
+    BEGIN
+    DBEdit7.Color:=clOlive;
+    END
+    ELSE
+    BEGIN
+    DBEdit7.Color:= $003B3B3B;
+    END;
+
+      if DBEdit6.Text<>'  /  /    ' then
+  BEGIN
+   VCTOdb6:= strtodate(dbedit14.Text);
+   if VCTOdb6 <= HOJE then
+    BEGIN
+    DBEdit6.Color:=CLRED;
+    END
+    else if (VCTOdb6 >= HOJE)and (VCTOdb6 <= vcto4meses) then
+    BEGIN
+    DBEdit6.Color:=clOlive;
+    END
+    ELSE
+    BEGIN
+    DBEdit6.Color:= $003B3B3B;
+    END;
+
+  END;
+
+  END;
+
+
+
+end;
+
+
+procedure TFRMREGINTEGRACAO.FormClose(Sender: TObject;
+  var Action: TCloseAction);
+begin
+BTN_Exit.Click;
+end;
+
+end.

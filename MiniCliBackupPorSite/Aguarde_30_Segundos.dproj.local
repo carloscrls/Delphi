@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2016/01/18 09:37:59.000.388,C:\Users\RAD STUDIO\Desktop\CLIENT\GeradorDeLeituraPorIp.dproj=C:\Users\RAD STUDIO\Desktop\CLIENT\ClientConsultaPorIp.dproj</Transaction>
+    <Transaction>2016/01/19 11:52:22.000.669,C:\Users\RAD STUDIO\Desktop\CLIENT LOCAL MINI\UnitMiniCli.dfm=C:\Users\RAD STUDIO\Desktop\CLIENT\Unit2.dfm</Transaction>
+    <Transaction>2016/01/19 11:52:22.000.669,C:\Users\RAD STUDIO\Desktop\CLIENT LOCAL MINI\UnitMiniCli.pas=C:\Users\RAD STUDIO\Desktop\CLIENT\Unit2.pas</Transaction>
+    <Transaction>2016/01/19 11:52:39.000.025,C:\Users\RAD STUDIO\Desktop\CLIENT LOCAL MINI\MiniCli.dproj=C:\Users\RAD STUDIO\Desktop\CLIENT\ClientConsultaPorIp.dproj</Transaction>
+    <Transaction>2016/01/19 12:10:15.593,C:\Users\RAD STUDIO\Desktop\MiniCli\Aguarde_30_Segundos.dproj=C:\Users\RAD STUDIO\Desktop\MiniCli\MiniCli.dproj</Transaction>
+  </Transactions>
+</BorlandProject>

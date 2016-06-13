@@ -1,0 +1,208 @@
+unit UNITCONTROLEDEINTEGRACAO;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, System.ImageList, Vcl.ImgList,
+  Vcl.Grids, Vcl.DBGrids, Vcl.ComCtrls, Vcl.ToolWin, Vcl.StdCtrls, Vcl.ExtCtrls,
+  Vcl.Buttons;
+
+type
+  TFRMCONTROLEINTEGRACAO = class(TForm)
+    Edit1: TEdit;
+    PnlSearch: TPanel;
+    PnlTool: TPanel;
+    ToolBar1: TToolBar;
+    BTN_Inserir: TToolButton;
+    BTN_Alterar: TToolButton;
+    BTN_Excluir: TToolButton;
+    ToolButton4: TToolButton;
+    ToolButton6: TToolButton;
+    BTN_Sair: TToolButton;
+    PnlUser: TPanel;
+    DBGrid1: TDBGrid;
+    ImageList1: TImageList;
+    NR1: TEdit;
+    NR2: TEdit;
+    NR3: TEdit;
+    NR4: TEdit;
+    Label2: TLabel;
+    Label3: TLabel;
+    Label4: TLabel;
+    Label5: TLabel;
+    Label6: TLabel;
+    NR5: TEdit;
+    NR6: TEdit;
+    Label7: TLabel;
+    Label8: TLabel;
+    RadioGroup1: TRadioGroup;
+    BitBtn1: TBitBtn;
+    Edit2: TEdit;
+    Edit3: TEdit;
+    Edit4: TEdit;
+    procedure FormActivate(Sender: TObject);
+    procedure BTN_InserirClick(Sender: TObject);
+    procedure BTN_AlterarClick(Sender: TObject);
+    procedure BitBtn1Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FRMCONTROLEINTEGRACAO: TFRMCONTROLEINTEGRACAO;
+
+implementation
+
+{$R *.dfm}
+
+uses DM, UNITREGINTEGRACAO;
+
+procedure TFRMCONTROLEINTEGRACAO.BitBtn1Click(Sender: TObject);
+VAR STRLIGA,SQL:STRING;
+DIAS:integer;
+begin
+if  then
+
+DMUNT.ADODSCONTROLEDEINTEGRACAO.Close;
+SQL:='';
+
+ if (NR1.Text='')OR(NR2.Text='')OR(NR3.Text='')OR (NR4.Text='')OR(NR5.Text='')OR(NR6.Text='') then
+ BEGIN
+ strliga:= '';
+ END
+ else
+ begin
+ strliga:=' and ';
+ end;
+
+
+
+ if NR1.Text<>'' then
+ BEGIN
+  SQL:=SQL+(STRLIGA+'( NR_OPC1 = '''+NR1.Text+''' OR NR_OPC2 = '''+NR1.Text+''' OR NR_OPC3 = '''+NR1.Text+''' OR NR_OPC4 = '''+NR1.Text+''' OR NR_OPC5 = '''+NR1.Text+''' OR NR_OPC6 = '''+NR1.Text+''')');
+ STRLIGA:=' AND ';
+ END;
+  if NR2.Text<>'' then
+ BEGIN
+  SQL:=SQL+(STRLIGA+'( NR_OPC1 = '''+NR2.Text+''' OR NR_OPC2 = '''+NR2.Text+''' OR NR_OPC3 = '''+NR2.Text+''' OR NR_OPC4 = '''+NR2.Text+''' OR NR_OPC5 = '''+NR2.Text+''' OR NR_OPC6 = '''+NR2.Text+''')');
+ STRLIGA:=' AND ';
+
+ END;
+  if NR3.Text<>'' then
+ BEGIN
+  SQL:=SQL+(STRLIGA+'( NR_OPC1 = '''+NR3.Text+''' OR NR_OPC2 = '''+NR3.Text+''' OR NR_OPC3 = '''+NR3.Text+''' OR NR_OPC4 = '''+NR3.Text+''' OR NR_OPC5 = '''+NR3.Text+''' OR NR_OPC6 = '''+NR3.Text+''')');
+ STRLIGA:=' AND ';
+
+ END;
+  if NR4.Text<>'' then
+ BEGIN
+  SQL:=SQL+(STRLIGA+'( NR_OPC1 = '''+NR4.Text+''' OR NR_OPC2 = '''+NR4.Text+''' OR NR_OPC3 = '''+NR4.Text+''' OR NR_OPC4 = '''+NR4.Text+''' OR NR_OPC5 = '''+NR4.Text+''' OR NR_OPC6 = '''+NR4.Text+''')');
+ STRLIGA:=' AND ';
+
+ END;
+  if NR5.Text<>'' then
+ BEGIN
+  SQL:=SQL+(STRLIGA+'( NR_OPC1 = '''+NR5.Text+''' OR NR_OPC2 = '''+NR5.Text+''' OR NR_OPC3 = '''+NR5.Text+''' OR NR_OPC4 = '''+NR5.Text+''' OR NR_OPC5 = '''+NR5.Text+''' OR NR_OPC6 = '''+NR5.Text+''')');
+ STRLIGA:=' AND ';
+
+ END;
+  if NR6.Text<>'' then
+ BEGIN
+  SQL:=SQL+(STRLIGA+'( NR_OPC1 = '''+NR6.Text+''' OR NR_OPC2 = '''+NR6.Text+''' OR NR_OPC3 = '''+NR6.Text+''' OR NR_OPC4 = '''+NR6.Text+''' OR NR_OPC5 = '''+NR6.Text+''' OR NR_OPC6 = '''+NR6.Text+''')');
+ STRLIGA:=' AND ';
+ END;
+
+ //filtro no goupbox
+ BEGIN
+
+
+   if RadioGroup1.ItemIndex=0 then  //PROXIMA DO VENCIMENTO
+   BEGIN
+   edit2.text:=formatdatetime('dd/mm/yyyy',now);
+   DIAS:= strtoint(Edit3.Text)*30; //EDIT3 = NUMERO DIGITADO DE MESES CONVERTIO EM DIAS
+   edit4.text:=formatdatetime('dd/mm/yyyy',now+DIAS);
+   SQL:=SQL+(STRLIGA+'( NR_OPC1_DATA > '''+Edit2.Text+''' OR NR_OPC2_DATA > '''+Edit2.Text+''' OR NR_OPC3_DATA > '''+Edit2.Text+''' OR NR_OPC4_DATA > '''+Edit2.Text+''' OR NR_OPC5_DATA > '''+Edit2.Text+''' OR NR_OPC6_DATA > '''+Edit2.Text+''')');
+   strliga:= ' and ';
+   SQL:=SQL+(STRLIGA+'( NR_OPC1_DATA < '''+Edit4.Text+''' OR NR_OPC2_DATA < '''+Edit4.Text+''' OR NR_OPC3_DATA < '''+Edit4.Text+''' OR NR_OPC4_DATA < '''+Edit4.Text+''' OR NR_OPC5_DATA < '''+Edit4.Text+''' OR NR_OPC6_DATA < '''+Edit4.Text+''')');
+   strliga:= ' and ';
+   showmessage('proxima ');
+   END;                                            //teste de data
+
+   if RadioGroup1.ItemIndex=2 then //vencida
+   BEGIN
+   edit2.text:=formatdatetime('dd/mm/yyyy',now);
+   SQL:=SQL+(STRLIGA+'( NR_OPC1_DATA < '''+Edit2.Text+''' OR NR_OPC2_DATA < '''+Edit2.Text+''' OR NR_OPC3_DATA < '''+Edit2.Text+''' OR NR_OPC4_DATA < '''+Edit2.Text+''' OR NR_OPC5_DATA < '''+Edit2.Text+''' OR NR_OPC6_DATA < '''+Edit2.Text+''')');
+   strliga:= ' and ';
+      showmessage('vencida ');
+   END;
+
+   if RadioGroup1.ItemIndex=1 then  //prazo
+   BEGIN
+   edit2.text:=formatdatetime('dd/mm/yyyy',now);
+   SQL:=SQL+(STRLIGA+'( NR_OPC1_DATA > '''+Edit2.Text+''' OR NR_OPC2_DATA > '''+Edit2.Text+''' OR NR_OPC3_DATA > '''+Edit2.Text+''' OR NR_OPC4_DATA > '''+Edit2.Text+''' OR NR_OPC5_DATA > '''+Edit2.Text+''' OR NR_OPC6_DATA > '''+Edit2.Text+''')');
+   strliga:= ' and ';
+      showmessage('prazo ');
+   END;
+ END;
+
+
+
+
+
+ if (NR1.Text<>'')OR(NR2.Text<>'')OR(NR3.Text<>'')OR (NR4.Text<>'')OR(NR5.Text<>'')OR(NR6.Text<>'') then
+ BEGIN
+   DMUNT.ADODSCONTROLEDEINTEGRACAO.CommandText:=(' select * from CONTROLEDEINTEGRACAO WHERE ' + SQL);
+   DMUNT.ADODSCONTROLEDEINTEGRACAO.Open;
+   SHOWMESSAGE(SQL);
+ END
+ ELSE
+ if (RadioGroup1.ItemIndex<>-1) and (NR1.Text='')and(NR2.Text='')and(NR3.Text='')and (NR4.Text='')and(NR5.Text='')and(NR6.Text='')  then
+ begin
+   DMUNT.ADODSCONTROLEDEINTEGRACAO.CommandText:=(' select * from CONTROLEDEINTEGRACAO WHERE ' + SQL);
+   DMUNT.ADODSCONTROLEDEINTEGRACAO.Open;
+   SHOWMESSAGE(SQL);
+ end
+ else
+ BEGIN
+ DMUNT.ADODSCONTROLEDEINTEGRACAO.CommandText:=(' select * from CONTROLEDEINTEGRACAO' );
+ DMUNT.ADODSCONTROLEDEINTEGRACAO.Open;
+ END;
+
+
+
+end;
+
+procedure TFRMCONTROLEINTEGRACAO.BTN_AlterarClick(Sender: TObject);
+begin
+DMUNT.ADODSCONTROLEDEINTEGRACAO.EDIT;
+FRMREGINTEGRACAO.SHOWMODAL;
+end;
+
+procedure TFRMCONTROLEINTEGRACAO.BTN_InserirClick(Sender: TObject);
+begin
+DMUNT.ADODSCONTROLEDEINTEGRACAO.INSERT;
+FRMREGINTEGRACAO.SHOWMODAL;
+end;
+
+procedure TFRMCONTROLEINTEGRACAO.FormActivate(Sender: TObject);
+begin
+ DMUNT.ADODSCONTROLEDEINTEGRACAO.Close;
+ DMUNT.ADODSCONTROLEDEINTEGRACAO.CommandText:='select * from CONTROLEDEINTEGRACAO ';
+ DMUNT.ADODSCONTROLEDEINTEGRACAO.Active:=true;
+ DMUNT.ADODSCONTROLEDEINTEGRACAO.open;
+
+ DMUNT.ADODSEMPRESA.Close;
+ DMUNT.ADODSEMPRESA.CommandText:='select * from EMPRESA ';
+ DMUNT.ADODSEMPRESA.Active:=true;
+ DMUNT.ADODSEMPRESA.open;
+
+  DMUNT.ADODSINSTRUTOR.Close;
+ DMUNT.ADODSINSTRUTOR.CommandText:='select * from INSTRUTOR ';
+ DMUNT.ADODSINSTRUTOR.Active:=true;
+ DMUNT.ADODSINSTRUTOR.open;
+end;
+
+end.

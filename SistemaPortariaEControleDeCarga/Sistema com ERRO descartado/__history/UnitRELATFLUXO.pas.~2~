@@ -1,0 +1,40 @@
+unit UnitRELATFLUXO;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Data.Win.ADODB, Vcl.StdCtrls,
+  System.ImageList, Vcl.ImgList, Vcl.Grids, Vcl.DBGrids, Vcl.ExtCtrls;
+
+type
+  TFRMRELATFLUXO = class(TForm)
+    Edit1: TEdit;
+    PnlSearch: TPanel;
+    DBGrid1: TDBGrid;
+    PnlTool: TPanel;
+    PnlUser: TPanel;
+    ImageList1: TImageList;
+    Label1: TLabel;
+    Edit2: TEdit;
+    ADOQuery1: TADOQuery;
+    DataSource1: TDataSource;
+    ADOQuery1NOME: TStringField;
+    ADOQuery1SAIDAouENTRADA: TStringField;
+    ADOQuery1DATAFLUXO: TStringField;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FRMRELATFLUXO: TFRMRELATFLUXO;
+
+implementation
+
+{$R *.dfm}
+
+uses DM;
+
+end.

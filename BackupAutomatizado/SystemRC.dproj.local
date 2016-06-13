@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2015/07/20 18:53:20.000.984,=C:\Users\Carlos\Documents\RAD Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2015/08/07 08:52:55.000.667,=C:\Users\Carlos\Documents\RAD Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2015/08/07 08:59:51.000.572,C:\Users\Carlos\Documents\Projeto IP\Unit1.dfm=C:\Users\Carlos\Documents\RAD Studio\Projects\Unit1.dfm</Transaction>
+    <Transaction>2015/08/07 08:59:51.000.572,C:\Users\Carlos\Documents\Projeto IP\Unit1.pas=C:\Users\Carlos\Documents\RAD Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2015/08/07 08:59:57.000.787,C:\Users\Carlos\Documents\Projeto IP\Project1.dproj=C:\Users\Carlos\Documents\RAD Studio\Projects\Project1.dproj</Transaction>
+    <Transaction>2015/08/07 11:38:29.000.074,C:\Users\Carlos\Documents\Projeto IP\Project1.dproj=C:\Users\Carlos\Documents\Projeto IP\SystemRC.dproj</Transaction>
+    <Transaction>2015/08/07 11:43:21.000.897,C:\Users\Carlos\Documents\Projeto IP\SystemRC.dproj=C:\Users\Carlos\Documents\Projeto IP\SystemRC.dproj</Transaction>
+    <Transaction>2015/08/07 11:43:58.000.832,C:\Users\Carlos\Documents\Projeto IP\SystemRC.dproj=C:\Users\Carlos\Documents\Projeto IP\Backup_RC.dproj</Transaction>
+    <Transaction>2015/08/07 12:25:45.000.756,C:\Users\Carlos\Documents\Projeto IP\Unit1.dfm=C:\Users\Carlos\Documents\Projeto IP\FormCreate2\Unit1.dfm</Transaction>
+    <Transaction>2015/08/07 12:25:45.000.756,C:\Users\Carlos\Documents\Projeto IP\Unit1.pas=C:\Users\Carlos\Documents\Projeto IP\FormCreate2\Unit1.pas</Transaction>
+    <Transaction>2015/08/07 12:25:52.000.193,C:\Users\Carlos\Documents\Projeto IP\Backup_RC.dproj=C:\Users\Carlos\Documents\Projeto IP\FormCreate2\Backup_RC.dproj</Transaction>
+    <Transaction>2015/08/07 12:26:28.000.365,C:\Users\Carlos\Documents\Projeto IP\FormCreate2\Backup_RC.dproj=C:\Users\Carlos\Documents\Projeto IP\FormCreate2\BackupRC.dproj</Transaction>
+    <Transaction>2015/08/07 12:37:07.000.570,C:\Users\Carlos\Documents\Projeto IP\FormCreate2\BackupRC.dproj=C:\SysSlc\RC\BackupRC.dproj</Transaction>
+    <Transaction>2015/08/07 12:37:18.000.337,C:\Users\Carlos\Documents\Projeto IP\FormCreate2\Unit1.dfm=C:\SysSlc\RC\Unit1.dfm</Transaction>
+    <Transaction>2015/08/07 12:37:18.000.337,C:\Users\Carlos\Documents\Projeto IP\FormCreate2\Unit1.pas=C:\SysSlc\RC\Unit1.pas</Transaction>
+    <Transaction>2015/08/07 12:49:57.000.835,C:\SysSlc\RC\BackupRC.dproj=C:\SysSlc\RC\BackupRC.dproj</Transaction>
+    <Transaction>2015/08/07 12:50:04.000.974,C:\SysSlc\RC\BackupRC.dproj=C:\SysSlc\RC\BackupRC.dproj</Transaction>
+    <Transaction>2015/08/07 12:50:27.000.684,C:\SysSlc\RC\BackupRC.dproj=C:\SysSlc\RC\SystemRC.dproj</Transaction>
+    <Transaction>2015/08/07 12:52:41.000.428,C:\SysSlc\RC\SystemRC.dproj=C:\SysSlc\RC\SystemJC.dproj</Transaction>
+    <Transaction>2015/08/07 12:53:16.000.194,C:\SysSlc\RC\SystemJC.dproj=C:\SysSlc\JC\SystemJC.dproj</Transaction>
+    <Transaction>2015/08/07 12:53:23.000.089,C:\SysSlc\RC\Unit1.pas=C:\SysSlc\JC\Unit1.pas</Transaction>
+    <Transaction>2015/08/07 12:53:23.000.089,C:\SysSlc\RC\Unit1.dfm=C:\SysSlc\JC\Unit1.dfm</Transaction>
+    <Transaction>2015/08/07 12:55:13.000.327,C:\SysSlc\JC\Unit1.dfm=C:\SysSlc\BF\Unit1.dfm</Transaction>
+    <Transaction>2015/08/07 12:55:13.000.327,C:\SysSlc\JC\Unit1.pas=C:\SysSlc\BF\Unit1.pas</Transaction>
+    <Transaction>2015/08/07 12:55:20.000.014,C:\SysSlc\JC\SystemJC.dproj=C:\SysSlc\BF\SystemJC.dproj</Transaction>
+    <Transaction>2015/08/07 12:55:26.000.881,C:\SysSlc\BF\SystemJC.dproj=C:\SysSlc\BF\SystemBF.dproj</Transaction>
+    <Transaction>2015/08/07 14:33:13.000.892,C:\SysSlc\BF\SystemBF.dproj=C:\SysSlc\BF\SystemBF2.dproj</Transaction>
+    <Transaction>2015/08/07 14:33:25.000.917,C:\SysSlc\BF\SystemBF2.dproj=C:\SysSlc\BF\SystemBF2.dproj</Transaction>
+    <Transaction>2015/08/07 15:27:29.000.495,C:\SysSlc\BF\Unit1.pas=C:\SysSlc\melhorias\RC\Unit1.pas</Transaction>
+    <Transaction>2015/08/07 15:27:29.000.495,C:\SysSlc\BF\Unit1.dfm=C:\SysSlc\melhorias\RC\Unit1.dfm</Transaction>
+    <Transaction>2015/08/07 15:27:38.000.104,C:\SysSlc\BF\SystemBF2.dproj=C:\SysSlc\melhorias\RC\SystemBF2.dproj</Transaction>
+    <Transaction>2015/08/07 15:34:00.000.842,C:\SysSlc\melhorias\RC\SystemBF2.dproj=C:\SysSlc\melhorias\RC\SystemRC2.dproj</Transaction>
+    <Transaction>2016/01/11 13:41:42.000.330,C:\Users\RAD STUDIO\Desktop\Cod Fonte\RC ok\Unit1.pas=C:\Users\RAD STUDIO\Desktop\MODELO\Unit1.pas</Transaction>
+    <Transaction>2016/01/11 13:41:42.000.330,C:\Users\RAD STUDIO\Desktop\Cod Fonte\RC ok\Unit1.dfm=C:\Users\RAD STUDIO\Desktop\MODELO\Unit1.dfm</Transaction>
+    <Transaction>2016/01/11 13:42:09.000.274,C:\Users\RAD STUDIO\Desktop\Cod Fonte\RC ok\SystemRC2.dproj=C:\Users\RAD STUDIO\Desktop\MODELO\SystemMODELO.dproj</Transaction>
+    <Transaction>2016/01/11 13:57:18.000.923,C:\Users\RAD STUDIO\Desktop\MODELO\RC\SystemRC.dproj=C:\Users\RAD STUDIO\Desktop\MODELO\RC\SystemMODELO.dproj</Transaction>
+  </Transactions>
+</BorlandProject>
